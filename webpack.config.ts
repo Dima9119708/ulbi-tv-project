@@ -1,0 +1,72 @@
+import path from "path";
+import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+
+interface IBuildEnv {
+    mode: 'development' | 'production'
+    port: number,
+}
+
+export default (env: IBuildEnv) => {
+    const port = env.port || 3000
+    const mode = env?.mode || 'development'
+    const isDev = mode === 'development'
+
+    const devServer: DevServerConfiguration = {
+        open: true,
+        port,
+        historyApiFallback: true
+    };
+
+    const config: webpack.Configuration = {
+        mode,
+        entry: path.resolve(__dirname, 'src', 'index.tsx'),
+        output: {
+            filename: '[name].[contenthash].js',
+            path: path.resolve(__dirname, 'build'),
+            clean: true
+        },
+        resolve: {
+            extensions: ['.tsx', '.ts', '.js'],
+        },
+        plugins: [
+            new webpack.ProgressPlugin(),
+            new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'public', 'index.html') }),
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].[contenthash:8].css',
+                chunkFilename: 'css/[name].[contenthash:8].css',
+            })
+        ],
+        devtool: isDev ? 'inline-source-map': undefined,
+        devServer: isDev ? devServer: undefined,
+        module: {
+            rules: [
+                {
+                    test: /\.tsx?$/,
+                    use: 'ts-loader',
+                    exclude: /node_modules/,
+                },
+                {
+                    test: /\.css$/i,
+                    use: [
+                        isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                        {
+                            loader: "css-loader",
+                            options: {
+                                modules: {
+                                    auto: (pathFile: string) => Boolean(pathFile.includes('.module.')),
+                                    localIdentName: isDev ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64:5]'
+                                }
+                            },
+                        },
+                        "postcss-loader"
+                    ],
+                },
+            ],
+        },
+    };
+
+    return config
+}
