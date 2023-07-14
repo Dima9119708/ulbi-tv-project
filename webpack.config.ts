@@ -30,6 +30,13 @@ export default (env: IBuildEnv) => {
         },
         resolve: {
             extensions: ['.tsx', '.ts', '.js'],
+            preferAbsolute: true,
+            mainFiles: ['index'],
+            modules: [
+                path.resolve(__dirname, 'src'),
+                'node_modules'
+            ],
+            alias: {}
         },
         plugins: [
             new webpack.ProgressPlugin(),

@@ -1,6 +1,6 @@
-import {createStore, useSingleStore} from "../shared/config/store";
 import {useLayoutEffect} from "react";
-import {EnumVariantTheme, ITheme, IThemeProps} from "./types";
+import {createStore, useSingleStore} from "shared/config/store/store";
+import {EnumVariantTheme, ITheme, IThemeProps} from "../types";
 
 const themeStore = createStore<ITheme>((set, get) => ({
     nameTheme: EnumVariantTheme.LIGHT,
