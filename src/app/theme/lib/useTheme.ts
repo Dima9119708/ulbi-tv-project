@@ -43,5 +43,6 @@ export const useTheme = (props: IThemeProps = {}) => {
     return {
         onChangeTheme,
         nameTheme,
+        getStateTheme: themeStore.getState
     }
 }

@@ -56,6 +56,20 @@ export default (env: IBuildEnv) => {
                     exclude: /node_modules/,
                 },
                 {
+                    test: /\.svg$/i,
+                    issuer: /\.[jt]sx?$/,
+                    resourceQuery: { not: [/url/] }, // exclude react component if *.svg?url
+                    use: ['@svgr/webpack'],
+                },
+                {
+                    test: /\.(png|jpe?g|gif)$/i,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                        },
+                    ],
+                },
+                {
                     test: /\.css$/i,
                     use: [
                         isDev ? 'style-loader' : MiniCssExtractPlugin.loader,

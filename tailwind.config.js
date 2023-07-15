@@ -9,6 +9,9 @@ module.exports = {
         primary: 'var(--color-primary)',
         secondary: 'var(--color-secondary)',
         bg: 'var(--color-bg)',
+        'inverted-bg': 'var(--color-inverted-bg)',
+        'inverted-secondary': 'var(--color-inverted-secondary)',
+        'inverted-primary': 'var(--color-inverted-primary)',
       }
     },
     fontFamily: {
@@ -22,6 +25,11 @@ module.exports = {
       m: '2.4rem',
       l: '3.2rem',
     },
+    extend: {
+      height: {
+        navbar: '5rem'
+      },
+    }
   },
   plugins: [
     (api) => {}
