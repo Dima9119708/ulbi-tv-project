@@ -1,13 +1,14 @@
 import React from 'react';
-import { useTheme } from "./theme";
 import Router from "app/providers/router";
 import {Navbar} from "widgets/Navbar";
+import { Sidebar } from "widgets/Sidebar";
 
 const App = () => {
 
     return (
-        <div>
-           <Navbar />
+        <div className="grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] min-h-[100vh]">
+           <Navbar className="col-span-full" />
+           <Sidebar />
            <Router />
         </div>
     );

@@ -9,7 +9,11 @@ const Router = () => {
             <Routes>
                 {
                     routeConfig.map(({ path, element }) => (
-                        <Route key={path} path={path} element={element} />
+                        <Route
+                            key={path}
+                            path={path}
+                            element={<div className="w-full p-[2rem]">{element}</div>}
+                        />
                     ))
                 }
             </Routes>

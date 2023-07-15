@@ -25,14 +25,25 @@ module.exports = {
       m: '2.4rem',
       l: '3.2rem',
     },
-    extend: {
-      height: {
-        navbar: '5rem'
-      },
-    }
+  },
+  corePlugins: {
+    transitionTimingFunction: false,
+    transitionDelay: false,
+    transitionProperty: false,
+    transitionDuration: false,
   },
   plugins: [
-    (api) => {}
+    (api) => {
+      api.addUtilities( {
+        '.transition-': {},
+      })
+
+      api.matchUtilities( {
+        transition: (value) => ({
+          transition: value
+        }),
+      })
+    }
   ],
 }
 

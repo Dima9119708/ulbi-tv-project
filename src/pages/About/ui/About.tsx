@@ -3,8 +3,8 @@ import styles from './about.module.css'
 
 const About = () => {
     return (
-        <div className={`${styles.helle} bg-b`}>
-            <div className="text-m text-color-primary bg-color-secondary">sacasc</div>
+        <div className={`${styles.helle} w-full`}>
+            sacasc
         </div>
     );
 };
