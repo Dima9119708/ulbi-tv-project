@@ -22,7 +22,6 @@
     "@types/webpack-dev-server": "^4.7.2",
     "autoprefixer": "^10.4.14",
     "css-loader": "^6.8.1",
-    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss": "^8.4.24",

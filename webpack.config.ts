@@ -62,12 +62,8 @@ export default (env: IBuildEnv) => {
                     use: ['@svgr/webpack'],
                 },
                 {
-                    test: /\.(png|jpe?g|gif)$/i,
-                    use: [
-                        {
-                            loader: 'file-loader',
-                        },
-                    ],
+                    test: /\.(png|jpg|jpeg|gif)$/i,
+                    type: 'asset/resource',
                 },
                 {
                     test: /\.css$/i,
