@@ -1,16 +1,16 @@
 import React from 'react';
-import {cn} from "shared/lib/classNames";
-import {Link} from "shared/ui/Link";
-import { EnumVariantLink } from "shared/ui/Link/ui/Link";
+import { cn } from 'shared/lib/classNames';
+import { Link } from 'shared/ui/Link';
+import { EnumVariantLink } from 'shared/ui/Link/ui/Link';
 
 interface NavbarProps {
     className?: string
 }
 
-const Navbar = (props: NavbarProps) => {
+function Navbar(props: NavbarProps) {
     const {
-        className
-    } = props
+        className,
+    } = props;
 
     return (
         <div className={cn('items-center px-[2rem] h-[var(--navbar-h)] justify-center flex bg-color-inverted-bg w-full', className)}>
@@ -20,6 +20,6 @@ const Navbar = (props: NavbarProps) => {
             </div>
         </div>
     );
-};
+}
 
 export default Navbar;

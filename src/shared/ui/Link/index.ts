@@ -1,5 +1,5 @@
-import Link from "./ui/Link";
+import Link from './ui/Link';
 
 export {
-    Link
-}
+    Link,
+};

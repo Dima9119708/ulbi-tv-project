@@ -1,5 +1,5 @@
-import {Link as LinkRouter, LinkProps as LinkRouterProps} from "react-router-dom";
-import {cn} from "shared/lib/classNames";
+import { Link as LinkRouter, LinkProps as LinkRouterProps } from 'react-router-dom';
+import { cn } from 'shared/lib/classNames';
 
 export enum EnumVariantLink {
     PRIMARY = 'primary',
@@ -10,12 +10,12 @@ interface LinkProps extends LinkRouterProps {
     variant?: EnumVariantLink
 }
 
-const Link = (props: LinkProps) => {
+function Link(props: LinkProps) {
     const {
         children,
         className,
-        variant = EnumVariantLink.PRIMARY
-    } = props
+        variant = EnumVariantLink.PRIMARY,
+    } = props;
 
     return (
         <LinkRouter
@@ -24,12 +24,12 @@ const Link = (props: LinkProps) => {
                 'text-color-primary',
                 variant === EnumVariantLink.PRIMARY && 'text-color-primary',
                 variant === EnumVariantLink.SECONDARY && 'text-color-inverted-secondary',
-                className
+                className,
             )}
         >
             { children }
         </LinkRouter>
     );
-};
+}
 
 export default Link;

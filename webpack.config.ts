@@ -1,9 +1,9 @@
-import path from "path";
-import webpack from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import path from 'path';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 interface IBuildEnv {
     mode: 'development' | 'production'
@@ -11,9 +11,9 @@ interface IBuildEnv {
 }
 
 export default (env: IBuildEnv) => {
-    const port = env.port || 3000
-    const mode = env?.mode || 'development'
-    const isDev = mode === 'development'
+    const port = env.port || 3000;
+    const mode = env?.mode || 'development';
+    const isDev = mode === 'development';
 
     const devServer: DevServerConfiguration = {
         open: true,
@@ -28,7 +28,7 @@ export default (env: IBuildEnv) => {
         output: {
             filename: '[name].[contenthash].js',
             path: path.resolve(__dirname, 'build'),
-            clean: true
+            clean: true,
         },
         resolve: {
             extensions: ['.tsx', '.ts', '.js'],
@@ -36,9 +36,9 @@ export default (env: IBuildEnv) => {
             mainFiles: ['index'],
             modules: [
                 path.resolve(__dirname, 'src'),
-                'node_modules'
+                'node_modules',
             ],
-            alias: {}
+            alias: {},
         },
         plugins: [
             new webpack.ProgressPlugin(),
@@ -48,13 +48,13 @@ export default (env: IBuildEnv) => {
                 chunkFilename: 'css/[name].[contenthash:8].css',
             }),
             new webpack.DefinePlugin({
-                __IS_DEV__: JSON.stringify(isDev)
+                __IS_DEV__: JSON.stringify(isDev),
             }),
             new webpack.HotModuleReplacementPlugin(),
             isDev && new ReactRefreshWebpackPlugin(),
         ],
-        devtool: isDev ? 'inline-source-map': undefined,
-        devServer: isDev ? devServer: undefined,
+        devtool: isDev ? 'inline-source-map' : undefined,
+        devServer: isDev ? devServer : undefined,
         module: {
             rules: [
                 {
@@ -64,10 +64,10 @@ export default (env: IBuildEnv) => {
                         loader: 'babel-loader',
                         options: {
                             presets: [
-                                ['@babel/preset-env']
-                            ]
-                        }
-                    }
+                                ['@babel/preset-env'],
+                            ],
+                        },
+                    },
                 },
                 {
                     test: /\.tsx?$/,
@@ -89,20 +89,20 @@ export default (env: IBuildEnv) => {
                     use: [
                         isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
                         {
-                            loader: "css-loader",
+                            loader: 'css-loader',
                             options: {
                                 modules: {
                                     auto: (pathFile: string) => Boolean(pathFile.includes('.module.')),
-                                    localIdentName: isDev ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64:5]'
-                                }
+                                    localIdentName: isDev ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64:5]',
+                                },
                             },
                         },
-                        "postcss-loader"
+                        'postcss-loader',
                     ],
                 },
             ],
         },
     };
 
-    return config
-}
+    return config;
+};

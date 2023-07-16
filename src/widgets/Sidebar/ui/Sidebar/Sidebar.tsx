@@ -1,18 +1,23 @@
-import React, {ReactNode, useState} from 'react';
-import {cn} from "shared/lib/classNames";
-import {ThemeSwitcher} from "features/ThemeSwitcher";
-import {LanguageSwitcher} from "features/LanguageSwitcher";
+import React, { ReactNode, useState } from 'react';
+import { cn } from 'shared/lib/classNames';
+import { ThemeSwitcher } from 'features/ThemeSwitcher';
+import { LanguageSwitcher } from 'features/LanguageSwitcher';
+import { Button } from 'shared/ui/Button';
 
 interface SidebarProps {
     children?: ReactNode
 }
 
-const Sidebar = (props: SidebarProps) => {
-    const [collapse, setCollapse] = useState(false)
+function Sidebar(props: SidebarProps) {
+    const {
+        children,
+    } = props;
+
+    const [collapse, setCollapse] = useState(false);
 
     const onToggle = () => {
-        setCollapse(prevState => !prevState)
-    }
+        setCollapse((prevState) => !prevState);
+    };
 
     return (
         <div
@@ -21,18 +26,19 @@ const Sidebar = (props: SidebarProps) => {
                 {
                     'w-[var(--sidebar-open-w)]': collapse === true,
                     'w-[var(--sidebar-close-w)]': collapse === false,
-                }
+                },
             )}
         >
-            <button onClick={onToggle}>
+            {children}
+            <Button onClick={onToggle}>
                 toggle
-            </button>
-           <div className="flex gap-[0_1rem] self-end justify-self-center">
-               <ThemeSwitcher />
-               <LanguageSwitcher />
-           </div>
+            </Button>
+            <div className="flex gap-[0_1rem] self-end justify-self-center">
+                <ThemeSwitcher />
+                <LanguageSwitcher />
+            </div>
         </div>
     );
-};
+}
 
 export default Sidebar;

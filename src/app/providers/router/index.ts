@@ -1,3 +1,3 @@
-import Router from './ui/Router'
+import Router from './ui/Router';
 
-export default Router
+export default Router;

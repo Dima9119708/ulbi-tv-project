@@ -1,3 +1,3 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 
-export const cn = clsx
+export const cn = clsx;

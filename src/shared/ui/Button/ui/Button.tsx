@@ -1,5 +1,5 @@
-import {cn} from "shared/lib/classNames";
-import { ButtonHTMLAttributes } from "react";
+import { cn } from 'shared/lib/classNames';
+import { ButtonHTMLAttributes } from 'react';
 
 export enum EnumVariantButton {
 
@@ -9,20 +9,21 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: EnumVariantButton
 }
 
-const Button = (props: ButtonProps) => {
-    const { className, children } = props
+function Button(props: ButtonProps) {
+    const { className, children } = props;
 
     return (
         <button
+            type="button"
             {...props}
             className={cn(
                 'text-color-primary cursor-pointer',
-                className
+                className,
             )}
         >
             { children }
         </button>
     );
-};
+}
 
 export default Button;

@@ -1,27 +1,28 @@
 import React from 'react';
-import {EnumVariantTheme, useTheme} from "app/theme";
-import {cn} from "shared/lib/classNames";
-import IconNight from 'shared/assets/icons/night-svgrepo-com.svg'
+import { EnumVariantTheme, useTheme } from 'app/theme';
+import { cn } from 'shared/lib/classNames';
+import IconNight from 'shared/assets/icons/night-svgrepo-com.svg';
+import { Button } from 'shared/ui/Button';
 
 interface ThemeSwitcherProps {
     className?: string
 }
 
-const ThemeSwitcher = (props: ThemeSwitcherProps) => {
-    const {  className } = props
+function ThemeSwitcher(props: ThemeSwitcherProps) {
+    const { className } = props;
 
-    const { onChangeTheme, nameTheme } = useTheme({ getNameThemeAfterChangeTheme: true })
+    const { onChangeTheme, nameTheme } = useTheme({ getNameThemeAfterChangeTheme: true });
 
     const onToggle = () => {
         onChangeTheme(
             nameTheme === EnumVariantTheme.LIGHT
                 ? EnumVariantTheme.DARK
-                : EnumVariantTheme.LIGHT
-        )
-    }
+                : EnumVariantTheme.LIGHT,
+        );
+    };
 
     return (
-        <button className={cn('h-[3rem] w-[3rem]', className)}  onClick={onToggle}>
+        <Button className={cn('h-[3rem] w-[3rem]', className)} onClick={onToggle}>
             <IconNight
                 height="100%"
                 width="100%"
@@ -29,9 +30,9 @@ const ThemeSwitcher = (props: ThemeSwitcherProps) => {
                     '#d08f0a': nameTheme === EnumVariantTheme.LIGHT,
                     '#090949': nameTheme === EnumVariantTheme.DARK,
                 })}
-             />
-        </button>
+            />
+        </Button>
     );
-};
+}
 
 export default ThemeSwitcher;

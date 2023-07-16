@@ -1,48 +1,44 @@
-import {useLayoutEffect} from "react";
-import {createStore, useSingleStore} from "shared/config/store/store";
-import {EnumVariantTheme, ITheme, IThemeProps} from "../types";
+import { useLayoutEffect } from 'react';
+import { createStore, useSingleStore } from 'shared/config/store/store';
+import { EnumVariantTheme, ITheme, IThemeProps } from '../types';
 
 const themeStore = createStore<ITheme>((set, get) => ({
     nameTheme: EnumVariantTheme.LIGHT,
     init: () => {
-        const savedThemeName = localStorage.getItem('themeName')
+        const savedThemeName = localStorage.getItem('themeName');
 
         get().onChange(
-            (savedThemeName as EnumVariantTheme) || EnumVariantTheme.LIGHT
-        )
+            (savedThemeName as EnumVariantTheme) || EnumVariantTheme.LIGHT,
+        );
     },
     onChange: (name: EnumVariantTheme) => {
-        localStorage.setItem('themeName', name)
-        document.body.setAttribute('data-theme', name)
+        localStorage.setItem('themeName', name);
+        document.body.setAttribute('data-theme', name);
 
-        set((state) => {
-            state.nameTheme = name
-        })
-    }
-}))
+        set((draft) => {
+            draft.nameTheme = name;
+        });
+    },
+}));
 
 export const useTheme = (props: IThemeProps = {}) => {
     const {
-        getNameThemeAfterChangeTheme = false
-    } = props
+        getNameThemeAfterChangeTheme = false,
+    } = props;
 
-
-    const { onChangeTheme, init, nameTheme } = useSingleStore(themeStore, (state) => {
-        return ({
-            init: state.init,
-            onChangeTheme: state.onChange,
-            nameTheme: getNameThemeAfterChangeTheme && state.nameTheme
-        })
-    })
+    const { onChangeTheme, init, nameTheme } = useSingleStore(themeStore, (state) => ({
+        init: state.init,
+        onChangeTheme: state.onChange,
+        nameTheme: getNameThemeAfterChangeTheme && state.nameTheme,
+    }));
 
     useLayoutEffect(() => {
-        init()
-    }, [])
-
+        init();
+    }, []);
 
     return {
         onChangeTheme,
         nameTheme,
-        getStateTheme: themeStore.getState
-    }
-}
+        getStateTheme: themeStore.getState,
+    };
+};

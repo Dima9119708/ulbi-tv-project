@@ -1,9 +1,8 @@
 import React, { Suspense } from 'react';
-import { Route ,Routes } from "react-router-dom";
-import {routeConfig} from "../lib/config";
+import { Route, Routes } from 'react-router-dom';
+import { routeConfig } from '../lib/config';
 
-const Router = () => {
-
+function Router() {
     return (
         <Suspense fallback={<>Loading...</>}>
             <Routes>
@@ -19,6 +18,6 @@ const Router = () => {
             </Routes>
         </Suspense>
     );
-};
+}
 
 export default Router;
