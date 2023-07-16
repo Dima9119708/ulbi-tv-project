@@ -1,6 +1,7 @@
 import React, {ReactNode, useState} from 'react';
 import {cn} from "shared/lib/classNames";
 import {ThemeSwitcher} from "features/ThemeSwitcher";
+import {LanguageSwitcher} from "features/LanguageSwitcher";
 
 interface SidebarProps {
     children?: ReactNode
@@ -26,8 +27,9 @@ const Sidebar = (props: SidebarProps) => {
             <button onClick={onToggle}>
                 toggle
             </button>
-           <div className="self-end justify-self-center">
+           <div className="flex gap-[0_1rem] self-end justify-self-center">
                <ThemeSwitcher />
+               <LanguageSwitcher />
            </div>
         </div>
     );

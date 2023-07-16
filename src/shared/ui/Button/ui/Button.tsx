@@ -1,8 +1,12 @@
 import {cn} from "shared/lib/classNames";
 import { ButtonHTMLAttributes } from "react";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export enum EnumVariantButton {
 
+}
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    variant?: EnumVariantButton
 }
 
 const Button = (props: ButtonProps) => {
@@ -11,7 +15,10 @@ const Button = (props: ButtonProps) => {
     return (
         <button
             {...props}
-            className={cn('cursor-pointer', className)}
+            className={cn(
+                'text-color-primary cursor-pointer',
+                className
+            )}
         >
             { children }
         </button>

@@ -1,20 +1,20 @@
 import {Link as LinkRouter, LinkProps as LinkRouterProps} from "react-router-dom";
 import {cn} from "shared/lib/classNames";
 
-export enum EnumThemeNames {
+export enum EnumVariantLink {
     PRIMARY = 'primary',
     SECONDARY = 'secondary',
 }
 
 interface LinkProps extends LinkRouterProps {
-    theme?: EnumThemeNames
+    variant?: EnumVariantLink
 }
 
 const Link = (props: LinkProps) => {
     const {
         children,
         className,
-        theme = EnumThemeNames.PRIMARY
+        variant = EnumVariantLink.PRIMARY
     } = props
 
     return (
@@ -22,8 +22,8 @@ const Link = (props: LinkProps) => {
             {...props}
             className={cn(
                 'text-color-primary',
-                theme === EnumThemeNames.PRIMARY && 'text-color-primary',
-                theme === EnumThemeNames.SECONDARY && 'text-color-inverted-secondary',
+                variant === EnumVariantLink.PRIMARY && 'text-color-primary',
+                variant === EnumVariantLink.SECONDARY && 'text-color-inverted-secondary',
                 className
             )}
         >

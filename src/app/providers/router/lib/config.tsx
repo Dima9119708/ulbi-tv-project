@@ -6,10 +6,10 @@ import {RoutesPath} from "shared/config/routes/routes";
 export const routeConfig: Array<RouteProps> = [
     {
         path: RoutesPath.main,
-        element: <AboutPage />
+        element: <MainPage />
     },
     {
         path: RoutesPath.about,
-        element: <MainPage />
+        element: <AboutPage />
     }
 ]
