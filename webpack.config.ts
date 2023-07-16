@@ -3,6 +3,7 @@ import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 
 interface IBuildEnv {
     mode: 'development' | 'production'
@@ -17,7 +18,8 @@ export default (env: IBuildEnv) => {
     const devServer: DevServerConfiguration = {
         open: true,
         port,
-        historyApiFallback: true
+        historyApiFallback: true,
+        hot: true,
     };
 
     const config: webpack.Configuration = {
@@ -47,7 +49,9 @@ export default (env: IBuildEnv) => {
             }),
             new webpack.DefinePlugin({
                 __IS_DEV__: JSON.stringify(isDev)
-            })
+            }),
+            new webpack.HotModuleReplacementPlugin(),
+            isDev && new ReactRefreshWebpackPlugin(),
         ],
         devtool: isDev ? 'inline-source-map': undefined,
         devServer: isDev ? devServer: undefined,
