@@ -14,8 +14,7 @@ module.exports = {
         'eslint:recommended',
         'airbnb',
     ],
-    ignorePatterns: ['webpack.config.ts'],
-    plugins: ['@typescript-eslint', 'react'],
+    plugins: ['@typescript-eslint', 'react', 'i18next'],
     globals: {
         __IS_DEV__: true,
     },
@@ -36,5 +35,6 @@ module.exports = {
         'import/extensions': 'off',
         'max-len': ['warn', 120],
         'no-underscore-dangle': 'off',
+        'i18next/no-literal-string': ['error', { markupOnly: true }],
     },
 };
