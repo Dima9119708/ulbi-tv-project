@@ -34,7 +34,7 @@ module.exports = {
         '@typescript-eslint/no-shadow': 'error',
         '@typescript-eslint/no-unused-vars': ['error'],
         'import/extensions': 'off',
-        'max-len': ['warn', { code: 120, ignoreComments: true }],
+        'max-len': ['error', { code: 120, ignoreComments: true }],
         'no-underscore-dangle': 'off',
         'i18next/no-literal-string': ['error', { markupOnly: true }],
     },
