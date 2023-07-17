@@ -1,4 +1,4 @@
-import { cn } from 'shared/lib/classNames';
+import { cn } from 'shared/lib/classNames/classNames';
 import { ButtonHTMLAttributes } from 'react';
 
 export enum EnumVariantButton {

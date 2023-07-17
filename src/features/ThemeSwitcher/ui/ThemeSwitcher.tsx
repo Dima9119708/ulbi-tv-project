@@ -1,6 +1,6 @@
 import React from 'react';
 import { EnumVariantTheme, useTheme } from 'app/theme';
-import { cn } from 'shared/lib/classNames';
+import { cn } from 'shared/lib/classNames/classNames';
 import IconNight from 'shared/assets/icons/night-svgrepo-com.svg';
 import { Button } from 'shared/ui/Button';
 

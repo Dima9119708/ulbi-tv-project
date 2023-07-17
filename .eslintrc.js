@@ -9,6 +9,7 @@ module.exports = {
         browser: true,
         es2021: true,
         node: true,
+        jest: true,
     },
     extends: [
         'eslint:recommended',
@@ -33,7 +34,7 @@ module.exports = {
         '@typescript-eslint/no-shadow': 'error',
         '@typescript-eslint/no-unused-vars': ['error'],
         'import/extensions': 'off',
-        'max-len': ['warn', 120],
+        'max-len': ['warn', { code: 120, ignoreComments: true }],
         'no-underscore-dangle': 'off',
         'i18next/no-literal-string': ['error', { markupOnly: true }],
     },

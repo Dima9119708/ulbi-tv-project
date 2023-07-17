@@ -1,8 +1,9 @@
 import React, { ReactNode, useState } from 'react';
-import { cn } from 'shared/lib/classNames';
+import { cn } from 'shared/lib/classNames/classNames';
 import { ThemeSwitcher } from 'features/ThemeSwitcher';
 import { LanguageSwitcher } from 'features/LanguageSwitcher';
 import { Button } from 'shared/ui/Button';
+import { useTranslation } from 'react-i18next';
 
 interface SidebarProps {
     children?: ReactNode
@@ -13,6 +14,7 @@ function Sidebar(props: SidebarProps) {
         children,
     } = props;
 
+    const { t } = useTranslation();
     const [collapse, setCollapse] = useState(false);
 
     const onToggle = () => {
@@ -31,7 +33,7 @@ function Sidebar(props: SidebarProps) {
         >
             {children}
             <Button onClick={onToggle}>
-                toggle
+                {t('toggle')}
             </Button>
             <div className="flex gap-[0_1rem] self-end justify-self-center">
                 <ThemeSwitcher />

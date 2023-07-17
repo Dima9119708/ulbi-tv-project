@@ -1,5 +1,5 @@
 import { Link as LinkRouter, LinkProps as LinkRouterProps } from 'react-router-dom';
-import { cn } from 'shared/lib/classNames';
+import { cn } from 'shared/lib/classNames/classNames';
 
 export enum EnumVariantLink {
     PRIMARY = 'primary',
