@@ -10,7 +10,12 @@ import {
     StoreMutatorIdentifier,
 } from 'zustand/vanilla';
 
-export const createStore = <State extends Record<string, any>>(fn: StateCreator<State, [['zustand/immer', never], ['zustand/devtools', never]]>) => create<State, [['zustand/immer', never], ['zustand/devtools', never]]>(immer(devtools(fn)));
+export const createStore = <State extends Record<string, any>>
+    (fn: StateCreator<State, [['zustand/immer', never], ['zustand/devtools', never]]>) => {
+    const useBoundStore = create<State, [['zustand/immer', never], ['zustand/devtools', never]]>(immer(devtools(fn)));
+
+    return useBoundStore;
+};
 
 export const useSingleStore = <State, Result, Mos extends [StoreMutatorIdentifier, unknown][] = []> (
     fn: UseBoundStore<Mutate<StoreApi<State>, Mos>>,
