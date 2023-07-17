@@ -15,6 +15,7 @@ module.exports = {
         'eslint:recommended',
         'airbnb',
     ],
+    ignorePatterns: ['webpack.config.ts'],
     plugins: ['@typescript-eslint', 'react', 'i18next'],
     globals: {
         __IS_DEV__: true,

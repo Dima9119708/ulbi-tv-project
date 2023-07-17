@@ -4,6 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 interface IBuildEnv {
     mode: 'development' | 'production'
@@ -52,6 +53,9 @@ export default (env: IBuildEnv) => {
             }),
             new webpack.HotModuleReplacementPlugin(),
             isDev && new ReactRefreshWebpackPlugin(),
+            new BundleAnalyzerPlugin({
+                openAnalyzer: false
+            })
         ],
         devtool: isDev ? 'inline-source-map' : undefined,
         devServer: isDev ? devServer : undefined,
