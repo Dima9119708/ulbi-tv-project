@@ -9,7 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: EnumVariantButton
 }
 
-function Button(props: ButtonProps) {
+const Button = (props: ButtonProps) => {
     const { className, children } = props;
 
     return (
@@ -24,6 +24,6 @@ function Button(props: ButtonProps) {
             { children }
         </button>
     );
-}
+};
 
 export default Button;

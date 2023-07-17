@@ -8,7 +8,7 @@ interface ThemeSwitcherProps {
     className?: string
 }
 
-function ThemeSwitcher(props: ThemeSwitcherProps) {
+const ThemeSwitcher = (props: ThemeSwitcherProps) => {
     const { className } = props;
 
     const { onChangeTheme, nameTheme } = useTheme({ getNameThemeAfterChangeTheme: true });
@@ -33,6 +33,6 @@ function ThemeSwitcher(props: ThemeSwitcherProps) {
             />
         </Button>
     );
-}
+};
 
 export default ThemeSwitcher;

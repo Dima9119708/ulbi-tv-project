@@ -10,7 +10,7 @@ interface LinkProps extends LinkRouterProps {
     variant?: EnumVariantLink
 }
 
-function Link(props: LinkProps) {
+const Link = (props: LinkProps) => {
     const {
         children,
         className,
@@ -30,6 +30,6 @@ function Link(props: LinkProps) {
             { children }
         </LinkRouter>
     );
-}
+};
 
 export default Link;

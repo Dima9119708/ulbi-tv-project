@@ -9,13 +9,13 @@ interface SidebarProps {
     children?: ReactNode
 }
 
-function Sidebar(props: SidebarProps) {
+const Sidebar = (props: SidebarProps) => {
     const {
         children,
     } = props;
 
     const { t } = useTranslation();
-    const [collapse, setCollapse] = useState(false);
+    const [collapse, setCollapse] = useState(true);
 
     const onToggle = () => {
         setCollapse((prevState) => !prevState);
@@ -41,6 +41,6 @@ function Sidebar(props: SidebarProps) {
             </div>
         </div>
     );
-}
+};
 
 export default Sidebar;

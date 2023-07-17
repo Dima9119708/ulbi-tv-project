@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-function Main() {
+const Main = () => {
     const { t } = useTranslation('main');
 
     return (
@@ -9,6 +9,6 @@ function Main() {
             {t('main')}
         </div>
     );
-}
+};
 
 export default Main;

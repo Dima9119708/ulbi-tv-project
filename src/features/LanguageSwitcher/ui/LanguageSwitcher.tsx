@@ -5,7 +5,7 @@ import { Button } from 'shared/ui/Button';
 //
 // }
 
-function LanguageSwitcher() {
+const LanguageSwitcher = () => {
     const { t, i18n } = useTranslation();
 
     const onToggle = () => {
@@ -17,6 +17,6 @@ function LanguageSwitcher() {
             {t('language')}
         </Button>
     );
-}
+};
 
 export default LanguageSwitcher;

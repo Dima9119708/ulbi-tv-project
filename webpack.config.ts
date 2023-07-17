@@ -93,7 +93,9 @@ export default (env: IBuildEnv) => {
                             options: {
                                 modules: {
                                     auto: (pathFile: string) => Boolean(pathFile.includes('.module.')),
-                                    localIdentName: isDev ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64:5]',
+                                    localIdentName: isDev
+                                        ? '[local]--[hash:base64:5]'
+                                        : '[hash:base64:5]',
                                 },
                             },
                         },

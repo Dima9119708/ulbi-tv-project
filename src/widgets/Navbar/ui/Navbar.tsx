@@ -8,7 +8,7 @@ interface NavbarProps {
     className?: string
 }
 
-function Navbar(props: NavbarProps) {
+const Navbar = (props: NavbarProps) => {
     const {
         className,
     } = props;
@@ -28,6 +28,6 @@ function Navbar(props: NavbarProps) {
             </div>
         </div>
     );
-}
+};
 
 export default Navbar;

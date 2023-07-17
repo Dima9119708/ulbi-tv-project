@@ -1,4 +1,7 @@
 {
   "hello": "hello",
   "language": "English",
+  "page_not_found": "Page not found",
+  "error_boundary": "Oops, something went wrong",
+  "reload_page": "Reload Page"
 }

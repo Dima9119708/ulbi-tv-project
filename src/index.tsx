@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client';
 import 'app/styles/index.css';
 import App from 'app/App';
 import { BrowserRouter } from 'react-router-dom';
+import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 
 import 'shared/config/i18n/i18n';
 
@@ -11,6 +12,8 @@ const root = createRoot(container);
 
 root.render(
     <BrowserRouter>
-        <App />
+        <ErrorBoundary>
+            <App />
+        </ErrorBoundary>
     </BrowserRouter>,
 );

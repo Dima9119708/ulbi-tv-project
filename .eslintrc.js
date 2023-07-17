@@ -37,5 +37,8 @@ module.exports = {
         'max-len': ['error', { code: 120, ignoreComments: true }],
         'no-underscore-dangle': 'off',
         'i18next/no-literal-string': ['error', { markupOnly: true }],
+        'react/function-component-definition': ['error', {
+            namedComponents: ['arrow-function'],
+        }],
     },
 };

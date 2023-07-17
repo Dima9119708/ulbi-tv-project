@@ -1,23 +1,25 @@
 import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { Loading } from 'shared/ui/Loading';
 import { routeConfig } from '../lib/config';
 
-function Router() {
-    return (
-        <Suspense fallback={<>Loading...</>}>
-            <Routes>
-                {
-                    routeConfig.map(({ path, element }) => (
-                        <Route
-                            key={path}
-                            path={path}
-                            element={<div className="w-full p-[2rem]">{element}</div>}
-                        />
-                    ))
-                }
-            </Routes>
-        </Suspense>
-    );
-}
+const Router = () => (
+    <Routes>
+        {
+            routeConfig.map(({ path, element }) => (
+                <Route
+                    key={path}
+                    path={path}
+                    element={(
+                        <Suspense fallback={<Loading on />}>
+                            <div className="w-full p-[2rem]">{element}</div>
+                        </Suspense>
+                    )}
+                />
+            ))
+        }
+    </Routes>
+
+);
 
 export default Router;
