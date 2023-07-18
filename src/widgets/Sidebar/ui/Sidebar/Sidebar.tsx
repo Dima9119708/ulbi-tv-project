@@ -24,7 +24,7 @@ const Sidebar = (props: SidebarProps) => {
     return (
         <div
             className={cn(
-                'grid transition-[width_0.3s_ease] bg-color-inverted-bg',
+                'grid transition-[width_0.3s_ease] min-h-[20rem] pb-[2rem] bg-color-inverted-bg',
                 {
                     'w-[var(--sidebar-open-w)]': collapse === true,
                     'w-[var(--sidebar-close-w)]': collapse === false,

@@ -13,6 +13,11 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
+  "include": [
+    ".storybook/**/*",
+    "./src/**/*",
+    "webpack.config.ts"
+  ],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"

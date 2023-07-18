@@ -1,3 +1,3 @@
-import clsx from 'clsx';
+import { cx } from 'class-variance-authority';
 
-export const cn = clsx;
+export const cn = cx;

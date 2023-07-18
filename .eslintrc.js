@@ -11,10 +11,7 @@ module.exports = {
         node: true,
         jest: true,
     },
-    extends: [
-        'eslint:recommended',
-        'airbnb',
-    ],
+    extends: ['eslint:recommended', 'airbnb', 'plugin:storybook/recommended'],
     ignorePatterns: ['webpack.config.ts'],
     plugins: ['@typescript-eslint', 'react', 'i18next'],
     globals: {
@@ -24,9 +21,14 @@ module.exports = {
         indent: [2, 4],
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
-        'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
+        'react/jsx-filename-extension': [2, {
+            extensions: ['.js', '.jsx', '.tsx'],
+        }],
         'import/no-unresolved': 'off',
-        'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['draft'] }],
+        'no-param-reassign': ['error', {
+            props: true,
+            ignorePropertyModificationsFor: ['draft'],
+        }],
         'import/prefer-default-export': 'off',
         'react/react-in-jsx-scope': 'off',
         'react/require-default-props': 'off',
@@ -35,9 +37,14 @@ module.exports = {
         '@typescript-eslint/no-shadow': 'error',
         '@typescript-eslint/no-unused-vars': ['error'],
         'import/extensions': 'off',
-        'max-len': ['error', { code: 120, ignoreComments: true }],
+        'max-len': ['error', {
+            code: 120,
+            ignoreComments: true,
+        }],
         'no-underscore-dangle': 'off',
-        'i18next/no-literal-string': ['error', { markupOnly: true }],
+        'i18next/no-literal-string': ['error', {
+            markupOnly: true,
+        }],
         'react/function-component-definition': ['error', {
             namedComponents: ['arrow-function'],
         }],
