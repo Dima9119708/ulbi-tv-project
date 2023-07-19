@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { EnumVariantTheme } from 'app/theme';
-import {
-    BaseDARK, BaseLight, OutlineDark, OutlineLight,
-} from 'shared/ui/Button/ui/Button.stories';
 import Sidebar from './Sidebar';
 import Theme from '../../../../../.storybook/decorators/Themes';
 
