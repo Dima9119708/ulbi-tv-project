@@ -16,7 +16,7 @@
     "test:unit": "jest",
     "test:ui": "yarn loki test",
     "test:ui:approve": "yarn loki approve",
-    "test:ui:ci": "concurrently -s first -k \"yarn storybook\" \"yarn loki test --chromeRetries 3\""
+    "test:ui:ci": "concurrently -s first -k \"yarn storybook\" \"yarn loki test --chromeRetries 3\" \"deelay\""
   },
   "keywords": [],
   "author": "",
