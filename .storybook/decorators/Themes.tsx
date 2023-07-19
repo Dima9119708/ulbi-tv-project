@@ -6,6 +6,15 @@ export default (Story: StoryFn) => {
 
     useEffect(() => {
         document.body.setAttribute('data-theme', theme);
+
+        const nodeListDocs: NodeListOf<HTMLDivElement> = document.querySelectorAll('.docs-story')
+
+        if (nodeListDocs.length) {
+            nodeListDocs.forEach($docs => {
+                $docs.style.backgroundColor = 'var(--color-bg)'
+            })
+        }
+
     }, [theme]);
 
     return <Story />;

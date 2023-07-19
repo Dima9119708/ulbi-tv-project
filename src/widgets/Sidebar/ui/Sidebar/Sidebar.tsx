@@ -6,11 +6,13 @@ import { Button } from 'shared/ui/Button';
 import { useTranslation } from 'react-i18next';
 
 interface SidebarProps {
-    children?: ReactNode
+    children?: ReactNode,
+    className?: string,
 }
 
 const Sidebar = (props: SidebarProps) => {
     const {
+        className,
         children,
     } = props;
 
@@ -24,11 +26,12 @@ const Sidebar = (props: SidebarProps) => {
     return (
         <div
             className={cn(
-                'grid transition-[width_0.3s_ease] min-h-[20rem] pb-[2rem] bg-color-inverted-bg',
+                'grid transition-[width_0.3s_ease] pb-[2rem] bg-color-inverted-bg',
                 {
                     'w-[var(--sidebar-open-w)]': collapse === true,
                     'w-[var(--sidebar-close-w)]': collapse === false,
                 },
+                className,
             )}
         >
             {children}
