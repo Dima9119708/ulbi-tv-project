@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { EnumVariantTheme } from 'app/theme';
 import Button, { EnumVariantButton } from './Button';
+import Theme from '../../../../../.storybook/decorators/Themes';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -19,15 +21,41 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Base: Story = {
+export const BaseLight: Story = {
     args: {
         children: 'Base',
     },
 };
 
-export const Outline: Story = {
+export const BaseDARK: Story = {
+    args: {
+        children: 'Base',
+    },
+};
+
+export const OutlineLight: Story = {
     args: {
         variant: EnumVariantButton.OUTLINE,
         children: 'Outline',
     },
 };
+
+export const OutlineDark: Story = {
+    args: {
+        variant: EnumVariantButton.OUTLINE,
+        children: 'Outline',
+    },
+};
+
+BaseLight.decorators = [
+    Theme(EnumVariantTheme.LIGHT),
+];
+BaseDARK.decorators = [
+    Theme(EnumVariantTheme.DARK),
+];
+OutlineLight.decorators = [
+    Theme(EnumVariantTheme.LIGHT),
+];
+OutlineDark.decorators = [
+    Theme(EnumVariantTheme.DARK),
+];

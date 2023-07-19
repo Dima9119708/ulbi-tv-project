@@ -1,21 +1,20 @@
 import type { StoryFn } from "@storybook/react";
 import {useEffect, useGlobals} from "@storybook/addons";
+import {EnumVariantTheme} from "app/theme";
 
-export default (Story: StoryFn) => {
+export default (themeName: EnumVariantTheme | null) => (Story: StoryFn) => {
     const [{ theme }] = useGlobals();
 
     useEffect(() => {
-        document.body.setAttribute('data-theme', theme);
+        const $docsStory: HTMLDivElement = document.querySelector('.docs-story')
 
-        const nodeListDocs: NodeListOf<HTMLDivElement> = document.querySelectorAll('.docs-story')
+        document.body.setAttribute('data-theme', $docsStory ? theme : themeName);
 
-        if (nodeListDocs.length) {
-            nodeListDocs.forEach($docs => {
-                $docs.style.backgroundColor = 'var(--color-bg)'
-            })
+        if ($docsStory) {
+            $docsStory.style.backgroundColor = 'var(--color-bg)'
         }
 
-    }, [theme]);
+    }, [theme, themeName]);
 
     return <Story />;
 }

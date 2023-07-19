@@ -29,7 +29,7 @@ const preview: Preview = {
     },
   },
   decorators: [
-    Theme,
+    Theme(null),
     Routers
   ]
 };
