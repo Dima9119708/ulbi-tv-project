@@ -15,7 +15,7 @@
     "lint:css:fix": "yarn stylelint \"src/**/*.css\" --fix",
     "test:unit": "jest",
     "test:ui": "yarn loki test",
-    "test:ui:ci": "yarn loki --requireReference --reactUri file:./storybook-static"
+    "test:ui:ci": "build-storybook && loki --requireReference --reactUri file:./storybook-static"
   },
   "keywords": [],
   "author": "",
