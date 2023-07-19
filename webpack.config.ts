@@ -51,7 +51,7 @@ export default (env: IBuildEnv) => {
             new webpack.DefinePlugin({
                 __IS_DEV__: JSON.stringify(isDev),
             }),
-            new webpack.HotModuleReplacementPlugin(),
+            isDev && new webpack.HotModuleReplacementPlugin(),
             isDev && new ReactRefreshWebpackPlugin(),
             isDev && new BundleAnalyzerPlugin({
                 openAnalyzer: false
