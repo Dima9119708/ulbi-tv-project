@@ -90,6 +90,7 @@
     "zustand": "^4.3.8"
   },
   "loki": {
+    "chromeDockerUseCopy": true,
     "configurations": {
       "chrome.laptop": {
         "target": "chrome.app",
