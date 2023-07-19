@@ -17,8 +17,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-#      - name: yarn modules
-#        run: yarn install
+      - name: yarn modules
+        run: yarn install
 #      - name: build production
 #        run: yarn run build:prod
       - name: lint typescript
