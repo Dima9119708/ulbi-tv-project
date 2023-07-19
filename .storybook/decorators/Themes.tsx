@@ -6,13 +6,30 @@ export default (themeName: EnumVariantTheme | null) => (Story: StoryFn) => {
     const [{ theme }] = useGlobals();
 
     useEffect(() => {
-        const $docsStory: HTMLDivElement = document.querySelector('.docs-story')
+        if (!window.location.search.includes('viewMode=docs')) {
+            document.body.setAttribute('data-theme', themeName)
+            return
+        }
 
-        document.body.setAttribute('data-theme', $docsStory ? theme : themeName);
+        const storiesNodes: NodeListOf<HTMLDivElement> = document.querySelectorAll('.sb-anchor')
 
-        if ($docsStory) {
+        const stories = Array.from(storiesNodes)
+        const $firstNode = stories.shift()
+
+        if ($firstNode) {
+            const $docsStory: HTMLDivElement = $firstNode.querySelector('.docs-story')
+
+            $docsStory.setAttribute('data-theme', theme)
             $docsStory.style.backgroundColor = 'var(--color-bg)'
         }
+
+        stories.forEach($story => {
+            const themeName = $story.id.split('-').at(-1)
+            const $docsStory: HTMLDivElement = $story.querySelector('.docs-story')
+
+            $docsStory.setAttribute('data-theme', themeName)
+            $docsStory.style.backgroundColor = 'var(--color-bg)'
+        })
 
     }, [theme, themeName]);
 
