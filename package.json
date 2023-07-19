@@ -11,7 +11,7 @@
     "storybook": "storybook dev -p 6006",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"src**/*.{ts,tsx}\" --fix",
-    "lint:css": "yarn stylelint \"src/**/*.css\" --fix",
+    "lint:css": "yarn stylelint \"src/**/*.css\"",
     "lint:css:fix": "yarn stylelint \"src/**/*.css\" --fix",
     "test:unit": "jest",
     "test:ui": "yarn loki test"
