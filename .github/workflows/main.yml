@@ -27,7 +27,7 @@ jobs:
 #        run: yarn run lint:css
 #      - name: test unit
 #        run: yarn run test:unit
-#      - name: build storybook
-#        run: yarn run storybook:build
+      - name: build storybook
+        run: yarn run storybook:build
       - name: storybook test
         run: yarn run test:ui:ci
