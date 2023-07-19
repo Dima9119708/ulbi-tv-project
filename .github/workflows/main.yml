@@ -22,8 +22,8 @@ jobs:
       - name: build production
         run: yarn build:prod
       - name: lint typescript
-        run: yarn lint:ts:fix
+        run: yarn lint:ts
       - name: lint css
-        run: yarn lint:css:fix
+        run: yarn lint:css
       - name: test unit
         run: yarn test:unit

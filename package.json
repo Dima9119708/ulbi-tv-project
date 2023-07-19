@@ -9,7 +9,9 @@
     "build:prod": "webpack --env mode=production",
     "build-storybook": "storybook build",
     "storybook": "storybook dev -p 6006",
+    "lint:ts": "eslint src/**/*.{ts,tsx}",
     "lint:ts:fix": "eslint src/**/*.{ts,tsx} --fix",
+    "lint:css": "yarn stylelint src/**/*.css --fix",
     "lint:css:fix": "yarn stylelint src/**/*.css --fix",
     "test:unit": "jest",
     "test:ui": "yarn loki test"
