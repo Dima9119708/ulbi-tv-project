@@ -20,10 +20,10 @@ jobs:
       - name: yarn modules
         run: yarn install
       - name: build production
-        run: yarn build:prod
+        run: yarn run build:prod
       - name: lint typescript
-        run: yarn lint:ts
+        run: yarn run lint:ts
       - name: lint css
-        run: yarn lint:css
+        run: yarn run lint:css
       - name: test unit
-        run: yarn test:unit
+        run: yarn run test:unit
