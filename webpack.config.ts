@@ -53,7 +53,7 @@ export default (env: IBuildEnv) => {
             }),
             new webpack.HotModuleReplacementPlugin(),
             isDev && new ReactRefreshWebpackPlugin(),
-            new BundleAnalyzerPlugin({
+            isDev && new BundleAnalyzerPlugin({
                 openAnalyzer: false
             })
         ],
