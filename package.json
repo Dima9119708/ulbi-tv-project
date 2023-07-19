@@ -7,7 +7,7 @@
     "start": "webpack serve --open --env port=9000",
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production",
-    "storybook:build": "storybook build",
+    "storybook:build": "storybook build -s public --quiet",
     "storybook": "storybook dev -p 6006",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"src**/*.{ts,tsx}\" --fix",
@@ -16,7 +16,7 @@
     "test:unit": "jest",
     "test:ui": "yarn loki test",
     "test:ui:approve": "yarn loki approve",
-    "test:ui:ci": "concurrently --kill-others --raw --success first 'loki --requireReference --reactUri file:./storybook-static' 'deelay'"
+    "test:ui:ci": "concurrently -s first -k \"yarn storybook\" \"yarn loki test --chromeRetries 3\""
   },
   "keywords": [],
   "author": "",
