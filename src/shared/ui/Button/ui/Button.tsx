@@ -10,7 +10,7 @@ const button = cva(null, {
     variants: {
         intent: {
             [EnumVariantButton.BASE]: [
-                'text-color-primary cursor-pointer',
+                'text-color-primary cursor-pointer text-[20rem]',
             ],
             [EnumVariantButton.OUTLINE]: [
                 'p-[0.4rem_1.5rem]',
