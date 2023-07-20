@@ -1,8 +1,5 @@
 import React from 'react';
 import { cn } from 'shared/lib/classNames/classNames';
-import { Link } from 'shared/ui/Link';
-import { EnumVariantLink } from 'shared/ui/Link/ui/Link';
-import { useTranslation } from 'react-i18next';
 
 interface NavbarProps {
     className?: string
@@ -13,8 +10,6 @@ const Navbar = (props: NavbarProps) => {
         className,
     } = props;
 
-    const { t } = useTranslation();
-
     return (
         <div
             className={cn(
@@ -22,10 +17,7 @@ const Navbar = (props: NavbarProps) => {
                 className,
             )}
         >
-            <div className="ml-auto">
-                <Link to="/" variant={EnumVariantLink.SECONDARY} className="mr-[1.5rem]">{t('main')}</Link>
-                <Link to="/about" variant={EnumVariantLink.SECONDARY}>{t('about_site')}</Link>
-            </div>
+            <div className="ml-auto" />
         </div>
     );
 };

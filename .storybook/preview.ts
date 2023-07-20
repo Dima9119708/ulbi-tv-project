@@ -1,7 +1,7 @@
 import type { Preview } from "@storybook/react";
-import {useEffect, useGlobals} from "@storybook/addons";
 import Routers from "./decorators/Routers";
 import Theme from "./decorators/Themes";
+import I18Next from "./decorators/I18Next";
 
 import '../src/app/styles/index.css';
 
@@ -27,10 +27,23 @@ const preview: Preview = {
         dynamicTitle: true
       },
     },
+    locale: {
+      name: 'Locale',
+      description: 'Internationalization locale',
+      toolbar: {
+        icon: 'globe',
+        items: [
+          { value: 'ru', title: 'Russian' },
+          { value: 'en', title: 'English' },
+        ],
+        showName: true,
+      },
+    },
   },
   decorators: [
     Theme(null),
-    Routers
+    Routers,
+    I18Next
   ]
 };
 

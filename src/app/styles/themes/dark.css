@@ -1,8 +1,8 @@
 [data-theme="dark"] {
-    --color-primary: #049604;
-    --color-secondary: #04ff04;
+    --color-primary: #04ff04;
+    --color-secondary: #049604;
     --color-bg: #090949;
     --color-inverted-bg: #e8e8ea;
-    --color-inverted-primary: #0232c2;
-    --color-inverted-secondary: #0452ff;
+    --color-inverted-primary: #0452ff;
+    --color-inverted-secondary: #0232c2;
 }

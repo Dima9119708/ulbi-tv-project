@@ -20,10 +20,12 @@ module.exports = {
         fontSize: {
             m: '1.6rem',
             l: '2.4rem',
+            xl: '3rem',
         },
         lineHeight: {
             m: '2.4rem',
             l: '3.2rem',
+            xl: '3rem',
         },
     },
     corePlugins: {

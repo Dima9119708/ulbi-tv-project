@@ -3,5 +3,8 @@
   "language": "English",
   "page_not_found": "Page not found",
   "error_boundary": "Oops, something went wrong",
-  "reload_page": "Reload Page"
+  "reload_page": "Reload Page",
+  "short_lng": "En",
+  "main": "Main",
+  "about_site": "About"
 }

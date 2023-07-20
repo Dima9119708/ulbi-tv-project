@@ -1,5 +1,6 @@
 import { Link as LinkRouter, LinkProps as LinkRouterProps } from 'react-router-dom';
 import { cva } from 'class-variance-authority';
+import { twMerge } from 'tailwind-merge';
 
 export enum EnumVariantLink {
     PRIMARY = 'primary',
@@ -15,7 +16,7 @@ const link = cva('text-color-primary', {
         intent: {
             [EnumVariantLink.PRIMARY]: [],
             [EnumVariantLink.SECONDARY]: [
-                'text-color-inverted-secondary',
+                'text-color-inverted-primary',
             ],
         },
     },
@@ -31,7 +32,7 @@ const Link = (props: LinkProps) => {
     return (
         <LinkRouter
             {...props}
-            className={link({ intent: variant, className })}
+            className={twMerge(link({ intent: variant, className }))}
         >
             { children }
         </LinkRouter>

@@ -1,4 +1,4 @@
-import type { StoryFn } from "@storybook/react";
+import type {StoryFn} from "@storybook/react";
 import {useEffect, useGlobals} from "@storybook/addons";
 import {EnumVariantTheme} from "app/theme";
 
@@ -7,7 +7,7 @@ export default (themeName: EnumVariantTheme | null) => (Story: StoryFn) => {
 
     useEffect(() => {
         if (!window.location.search.includes('viewMode=docs')) {
-            document.body.setAttribute('data-theme', themeName)
+            document.body.setAttribute('data-theme', themeName ?? theme)
             return
         }
 
@@ -27,7 +27,15 @@ export default (themeName: EnumVariantTheme | null) => (Story: StoryFn) => {
             const themeName = $story.id.split('-').at(-1)
             const $docsStory: HTMLDivElement = $story.querySelector('.docs-story')
 
-            $docsStory.setAttribute('data-theme', themeName)
+            let isDefaultTheme = false
+
+            for (const enumValue in EnumVariantTheme) {
+                if (EnumVariantTheme[enumValue as keyof typeof EnumVariantTheme] === themeName) {
+                    isDefaultTheme = true
+                }
+            }
+
+            $docsStory.setAttribute('data-theme', isDefaultTheme ? themeName : theme)
             $docsStory.style.backgroundColor = 'var(--color-bg)'
         })
 
