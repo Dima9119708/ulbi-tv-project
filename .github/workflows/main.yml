@@ -27,9 +27,3 @@ jobs:
         run: yarn run lint:css
       - name: test unit
         run: yarn run test:unit
-      - name: Publish to Chromatic
-        uses: chromaui/action@v1
-        # Chromatic GitHub Action options
-        with:
-          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
