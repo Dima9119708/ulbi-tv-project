@@ -1,5 +1,5 @@
 # Workflow name
-name: 'Chromatic'
+name: 'Screenshot UI test'
 
 # Event for the workflow
 on: push
