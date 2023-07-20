@@ -22,3 +22,5 @@ jobs:
         with:
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          # 👇 Add the Chromatic options flag here
+          chromaticOpts: "--exit-zero-on-changes"
