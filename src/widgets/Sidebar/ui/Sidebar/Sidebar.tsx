@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 import { cn } from 'shared/lib/classNames/classNames';
 import { ThemeSwitcher } from 'features/ThemeSwitcher';
 import { LanguageSwitcher } from 'features/LanguageSwitcher';
