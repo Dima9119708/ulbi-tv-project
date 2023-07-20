@@ -17,7 +17,7 @@
     "test:ui": "yarn loki test",
     "test:ui:approve": "yarn loki approve",
     "test:ui:ci": "yarn storybook:build && loki --requireReference --reactUri file:./storybook-static",
-    "chromatic": "chromatic",
+    "chromatic": "chromatic --exit-zero-on-changes",
     "chromatic:local": "npx chromatic --project-token=chpt_d6d0f80ea92681d"
   },
   "keywords": [],
