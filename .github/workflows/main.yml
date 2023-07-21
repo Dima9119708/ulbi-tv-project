@@ -17,13 +17,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: yarn modules
+      - name: Install modules
         run: yarn install
-      - name: build production
+      - name: Build production
         run: yarn run build:prod
-      - name: lint typescript
+      - name: Lint typescript
         run: yarn run lint:ts
-      - name: lint css
+      - name: Lint css
         run: yarn run lint:css
-      - name: test unit
+      - name: Test unit
         run: yarn run test:unit
+      - name: Build storybook
+        run: yarn run build-storybook
+      - name: Test storybook
+        run: yarn run test:ui
