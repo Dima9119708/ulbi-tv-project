@@ -14,6 +14,8 @@
     "lint:css": "yarn stylelint \"src/**/*.css\"",
     "lint:css:fix": "yarn stylelint \"src/**/*.css\" --fix",
     "test:unit": "jest",
+    "test:ui:local": "yarn loki test",
+    "test:ui:approve": "yarn loki approve",
     "test:ui": "yarn storybook dev -p 6006 & yarn wait-on tcp:6006 && yarn loki test"
   },
   "keywords": [],
