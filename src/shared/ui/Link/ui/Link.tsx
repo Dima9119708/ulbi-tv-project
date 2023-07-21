@@ -1,6 +1,6 @@
 import { Link as LinkRouter, LinkProps as LinkRouterProps } from 'react-router-dom';
 import { cva } from 'class-variance-authority';
-import { twMerge } from 'tailwind-merge';
+import { tailwindMerge } from 'shared/lib/tailwindMerge/tailwindMerge';
 
 export enum EnumVariantLink {
     PRIMARY = 'primary',
@@ -32,7 +32,7 @@ const Link = (props: LinkProps) => {
     return (
         <LinkRouter
             {...props}
-            className={twMerge(link({ intent: variant, className }))}
+            className={tailwindMerge(link({ intent: variant, className }))}
         >
             { children }
         </LinkRouter>

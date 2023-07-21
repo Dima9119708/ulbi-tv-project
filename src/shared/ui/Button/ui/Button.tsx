@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 import { ButtonHTMLAttributes } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { tailwindMerge } from 'shared/lib/tailwindMerge/tailwindMerge';
 
 export enum EnumVariantButton {
     BASE = 'base',
@@ -69,12 +69,12 @@ const Button = (props: ButtonProps) => {
         <button
             type="button"
             {...props}
-            className={twMerge(button({
+            className={tailwindMerge((button({
                 intent: variant,
                 className,
                 square,
                 size,
-            }))}
+            })))}
         >
             { children }
         </button>
