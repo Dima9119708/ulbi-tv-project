@@ -33,6 +33,13 @@ export const BaseDARK: Story = {
     },
 };
 
+export const BaseInverted: Story = {
+    args: {
+        variant: EnumVariantButton.BASE_INVERTED,
+        children: 'Base inverted',
+    },
+};
+
 export const OutlineLight: Story = {
     args: {
         variant: EnumVariantButton.OUTLINE,

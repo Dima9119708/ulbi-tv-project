@@ -24,21 +24,22 @@ export default (themeName: EnumVariantTheme | null) => (Story: StoryFn) => {
         }
 
         stories.forEach($story => {
-            const themeName = $story.id.split('-').at(-1)
+            const themeNameInNameComponent = $story.id.split('-').at(-1)
             const $docsStory: HTMLDivElement = $story.querySelector('.docs-story')
 
-            let isDefaultTheme = false
+            let themeAmongEnum = null
 
             for (const enumValue in EnumVariantTheme) {
-                if (EnumVariantTheme[enumValue as keyof typeof EnumVariantTheme] === themeName) {
-                    isDefaultTheme = true
+                if (EnumVariantTheme[enumValue as keyof typeof EnumVariantTheme] === themeNameInNameComponent) {
+                    themeAmongEnum = themeNameInNameComponent
                 }
             }
 
-            $docsStory.setAttribute('data-theme', isDefaultTheme ? themeName : theme)
+            const priorityNameTheme = themeAmongEnum || themeName || theme
+
+            $docsStory.setAttribute('data-theme', priorityNameTheme)
             $docsStory.style.backgroundColor = 'var(--color-bg)'
         })
-
     }, [theme, themeName]);
 
     return <Story />;

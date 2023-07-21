@@ -2,4 +2,5 @@
     --navbar-h: 5rem;
     --sidebar-open-w: 30rem;
     --sidebar-close-w: 5rem;
+    --overlay-color: rgb(0 0 0 / 60%);
 }

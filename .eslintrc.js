@@ -13,7 +13,7 @@ module.exports = {
     },
     extends: ['eslint:recommended', 'airbnb', 'plugin:storybook/recommended'],
     ignorePatterns: ['webpack.config.ts'],
-    plugins: ['@typescript-eslint', 'react', 'i18next'],
+    plugins: ['@typescript-eslint', 'react', 'i18next', 'react-hooks'],
     globals: {
         __IS_DEV__: true,
     },
@@ -48,5 +48,11 @@ module.exports = {
         'react/function-component-definition': ['error', {
             namedComponents: ['arrow-function'],
         }],
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'error',
+
+        // Temporary
+        'jsx-a11y/no-static-element-interactions': 'off',
+        'jsx-a11y/click-events-have-key-events': 'off',
     },
 };

@@ -9,6 +9,7 @@ module.exports = {
                 primary: 'var(--color-primary)',
                 secondary: 'var(--color-secondary)',
                 bg: 'var(--color-bg)',
+                overlay: 'var(--overlay-color)',
                 'inverted-bg': 'var(--color-inverted-bg)',
                 'inverted-secondary': 'var(--color-inverted-secondary)',
                 'inverted-primary': 'var(--color-inverted-primary)',
@@ -26,6 +27,9 @@ module.exports = {
             m: '2.4rem',
             l: '3.2rem',
             xl: '3rem',
+        },
+        zIndex: {
+            modal: 1300,
         },
     },
     corePlugins: {

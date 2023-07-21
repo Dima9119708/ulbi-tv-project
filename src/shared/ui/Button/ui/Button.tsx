@@ -4,6 +4,7 @@ import { tailwindMerge } from 'shared/lib/tailwindMerge/tailwindMerge';
 
 export enum EnumVariantButton {
     BASE = 'base',
+    BASE_INVERTED = 'base_inverted',
     OUTLINE = 'outline',
     BACKGROUND = 'background',
     BACKGROUND_INVERTED = 'background_inverted',
@@ -26,6 +27,9 @@ const button = cva(null, {
         intent: {
             [EnumVariantButton.BASE]: [
                 'text-color-primary cursor-pointer',
+            ],
+            [EnumVariantButton.BASE_INVERTED]: [
+                'text-color-inverted-primary',
             ],
             [EnumVariantButton.OUTLINE]: [
                 'p-[0.4rem_1.5rem]',
