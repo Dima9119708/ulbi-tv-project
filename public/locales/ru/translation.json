@@ -6,5 +6,8 @@
   "reload_page": "Перезагрузка страницы",
   "short_lng": "Ru",
   "main": "Главная",
-  "about_site": "О сайте"
+  "about_site": "О сайте",
+  "login": "Войти",
+  "password": "Пароль",
+  "name": "Имя"
 }

@@ -6,5 +6,8 @@
   "reload_page": "Reload Page",
   "short_lng": "En",
   "main": "Main",
-  "about_site": "About"
+  "about_site": "About",
+  "login": "Login",
+  "password": "Password",
+  "name": "Name"
 }

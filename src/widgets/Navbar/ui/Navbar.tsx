@@ -4,6 +4,7 @@ import { Modal } from 'shared/ui/Modal';
 import { Button } from 'shared/ui/Button';
 import { useTranslation } from 'react-i18next';
 import { EnumVariantButton } from 'shared/ui/Button/ui/Button';
+import { ModalAuth } from 'features/Auth';
 
 interface NavbarProps {
     className?: string
@@ -30,13 +31,7 @@ const Navbar = (props: NavbarProps) => {
                 </Button>
             </div>
 
-            <Modal open={isOpenModal} onClose={() => setOpenModal(false)}>
-                Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit. Beatae delectus in reprehenderit unde.
-                Consectetur dolores ea obcaecati quibusdam sapiente velit vero!
-                Architecto
-                debitis modi nemo neque optio, quibusdam reprehenderit temporibus!
-            </Modal>
+            <ModalAuth open={isOpenModal} onClose={() => setOpenModal(false)} />
         </div>
     );
 };

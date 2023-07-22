@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Button } from 'shared/ui/Button';
+import { EnumVariantButton } from 'shared/ui/Button/ui/Button';
 
 interface LanguageSwitcherProps {
     short?: boolean
@@ -14,7 +15,7 @@ const LanguageSwitcher = (props: LanguageSwitcherProps) => {
     };
 
     return (
-        <Button onClick={onToggle}>
+        <Button variant={EnumVariantButton.BASE_INVERTED} onClick={onToggle}>
             {t(short ? 'short_lng' : 'language')}
         </Button>
     );

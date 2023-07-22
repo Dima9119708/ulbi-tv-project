@@ -1,15 +1,8 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { cn } from 'shared/lib/classNames/classNames';
 import { Portal } from 'shared/ui/Portal';
-
-interface ModalProps {
-    classNameRoot?: string,
-    classNameOverlay?: string,
-    classNameChildren?: string,
-    children?: ReactNode,
-    open?: boolean,
-    onClose?: () => void,
-}
+import { ModalProps } from '../types';
+import { useAnimation } from '../lib/hooks/useAnimation';
 
 const Modal = (props: ModalProps) => {
     const {
@@ -21,12 +14,19 @@ const Modal = (props: ModalProps) => {
         classNameChildren,
     } = props;
 
-    const onOverlay = () => {
-        onClose();
-    };
+    const {
+        isMount,
+        isShow,
+        onAnimationAfterClose,
+    } = useAnimation(open);
 
     const onChildren = (e: React.MouseEvent) => {
         e.stopPropagation();
+    };
+
+    const onOverlay = () => {
+        onClose();
+        onAnimationAfterClose();
     };
 
     useEffect(() => {
@@ -40,13 +40,17 @@ const Modal = (props: ModalProps) => {
             window.addEventListener('keydown', onKeydown);
         }
 
-        return () => window.removeEventListener('keydown', onKeydown);
+        return () => {
+            window.removeEventListener('keydown', onKeydown);
+        };
     }, [onClose, open]);
+
+    if (!isMount) return null;
 
     return (
         <Portal>
-            <div className={cn('fixed inset-0 z-modal transition-[visibility__0.4s,_opacity_0.4s]', {
-                'invisible opacity-0': open === false,
+            <div className={cn('fixed inset-0 z-modal opacity-0 transition-[visibility__0.4s,_opacity_0.4s]', {
+                'opacity-100': isShow,
             }, classNameRoot)}
             >
                 <div
@@ -56,8 +60,8 @@ const Modal = (props: ModalProps) => {
                     <div
                         onClick={onChildren}
                         className={cn('max-w-[60%] bg-color-bg rounded-[0.4rem] transition-[transform_0.4s]', {
-                            'scale-[0.4]': open === false,
-                            'scale-[1]': open === true,
+                            'scale-[0.4]': isShow === false,
+                            'scale-[1]': isShow === true,
                         }, classNameChildren)}
                     >
                         { children }
