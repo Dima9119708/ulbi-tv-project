@@ -8,20 +8,20 @@ import {StoryFn} from "@storybook/react";
 // Wrap your stories in the I18nextProvider component
 export default (Story: StoryFn) => {
     const [{ locale }] = useGlobals();
-console.log('locale', locale)
+
     // When the locale global changes
     // Set the new locale in i18n
-    useEffect(() => {
-        i18n.changeLanguage(locale);
-    }, [locale]);
+    // useEffect(() => {
+    //     i18n.changeLanguage(locale);
+    // }, [locale]);
 
     return (
         // This catches the suspense from components not yet ready (still loading translations)
         // Alternative: set useSuspense to false on i18next.options.react when initializing i18next
-        <Suspense fallback={<div>loading translations...</div>}>
-            <I18nextProvider i18n={i18n}>
+        <I18nextProvider i18n={i18n}>
+            <Suspense fallback={<div>loading translations...</div>}>
                 <Story />
-            </I18nextProvider>
-        </Suspense>
+            </Suspense>
+        </I18nextProvider>
     );
 };

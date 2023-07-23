@@ -58,6 +58,11 @@ const button = cva(null, {
             [EnumSizeButton.L]: 'text-l',
             [EnumSizeButton.XL]: 'text-xl',
         },
+        disabled: {
+            base: [
+                'opacity-50',
+            ],
+        },
     },
     defaultVariants: {
         intent: EnumVariantButton.BASE,
@@ -66,7 +71,7 @@ const button = cva(null, {
 
 const Button = (props: ButtonProps) => {
     const {
-        className, children, variant, square, size,
+        className, children, variant, square, size, disabled,
     } = props;
 
     return (
@@ -78,6 +83,7 @@ const Button = (props: ButtonProps) => {
                 className,
                 square,
                 size,
+                disabled: disabled ? 'base' : undefined,
             })))}
         >
             { children }

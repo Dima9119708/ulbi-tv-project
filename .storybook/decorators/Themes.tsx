@@ -19,7 +19,7 @@ export default (themeName: EnumVariantTheme | null) => (Story: StoryFn) => {
         if ($firstNode) {
             const $docsStory: HTMLDivElement = $firstNode.querySelector('.docs-story')
 
-            $docsStory.setAttribute('data-theme', theme)
+            document.body.setAttribute('data-theme', theme)
             $docsStory.style.backgroundColor = 'var(--color-bg)'
         }
 

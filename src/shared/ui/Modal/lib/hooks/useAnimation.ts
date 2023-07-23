@@ -10,6 +10,14 @@ export const useAnimation = (open: boolean) => {
     const [isMount, setMount] = useState(false);
     const [isShow, setShow] = useState(false);
 
+    const onAnimationAfterClose = () => {
+        setShow(false);
+
+        animation.current.timeout = setTimeout(() => {
+            setMount(false);
+        }, 400);
+    };
+
     useEffect(() => {
         if (open) {
             setMount(true);
@@ -19,6 +27,8 @@ export const useAnimation = (open: boolean) => {
                     setShow(true);
                 });
             });
+        } else {
+            onAnimationAfterClose();
         }
     }, [open]);
 
@@ -27,14 +37,6 @@ export const useAnimation = (open: boolean) => {
         cancelAnimationFrame(animation.current.requestAnimationFrameWrapper);
         cancelAnimationFrame(animation.current.requestAnimationFrameInner);
     }, []);
-
-    const onAnimationAfterClose = () => {
-        setShow(false);
-
-        animation.current.timeout = setTimeout(() => {
-            setMount(false);
-        }, 400);
-    };
 
     return {
         isMount,

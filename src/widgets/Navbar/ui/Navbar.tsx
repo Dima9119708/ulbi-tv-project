@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { cn } from 'shared/lib/classNames/classNames';
-import { Modal } from 'shared/ui/Modal';
 import { Button } from 'shared/ui/Button';
 import { useTranslation } from 'react-i18next';
 import { EnumVariantButton } from 'shared/ui/Button/ui/Button';
 import { ModalAuth } from 'features/Auth';
+import { useSingleStore } from 'shared/config/store/store';
+import { userActions, userStore } from 'entity/User';
 
 interface NavbarProps {
     className?: string
@@ -18,6 +19,18 @@ const Navbar = (props: NavbarProps) => {
     const { t } = useTranslation();
     const [isOpenModal, setOpenModal] = useState(false);
 
+    const {
+        isAuth,
+    } = useSingleStore(userStore, (state) => ({
+        isAuth: state.authData !== undefined,
+    }));
+
+    useEffect(() => {
+        if (isAuth) {
+            setOpenModal(false);
+        }
+    }, [isAuth]);
+
     return (
         <div
             className={cn(
@@ -26,9 +39,18 @@ const Navbar = (props: NavbarProps) => {
             )}
         >
             <div className="ml-auto">
-                <Button onClick={() => setOpenModal(true)} variant={EnumVariantButton.BASE_INVERTED}>
-                    {t('login')}
-                </Button>
+                {
+                    isAuth ? (
+                        <Button onClick={userActions.logout} variant={EnumVariantButton.BASE_INVERTED}>
+                            {t('logout')}
+                        </Button>
+                    ) : (
+                        <Button onClick={() => setOpenModal(true)} variant={EnumVariantButton.BASE_INVERTED}>
+                            {t('login')}
+                        </Button>
+                    )
+                }
+
             </div>
 
             <ModalAuth open={isOpenModal} onClose={() => setOpenModal(false)} />

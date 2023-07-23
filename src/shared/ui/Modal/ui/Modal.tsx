@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { cn } from 'shared/lib/classNames/classNames';
 import { Portal } from 'shared/ui/Portal';
+import { useClose } from 'shared/ui/Modal/lib/hooks/useClose';
 import { ModalProps } from '../types';
 import { useAnimation } from '../lib/hooks/useAnimation';
 
@@ -20,13 +21,21 @@ const Modal = (props: ModalProps) => {
         onAnimationAfterClose,
     } = useAnimation(open);
 
+    const {
+        closeModal,
+        onMouseUp,
+        onMouseDown,
+    } = useClose();
+
     const onChildren = (e: React.MouseEvent) => {
         e.stopPropagation();
     };
 
     const onOverlay = () => {
-        onClose();
-        onAnimationAfterClose();
+        if (closeModal.current.isNeededClose) {
+            onClose();
+            onAnimationAfterClose();
+        }
     };
 
     useEffect(() => {
@@ -49,9 +58,12 @@ const Modal = (props: ModalProps) => {
 
     return (
         <Portal>
-            <div className={cn('fixed inset-0 z-modal opacity-0 transition-[visibility__0.4s,_opacity_0.4s]', {
-                'opacity-100': isShow,
-            }, classNameRoot)}
+            <div
+                className={cn('fixed inset-0 z-modal opacity-0 transition-[visibility__0.4s,_opacity_0.4s]', {
+                    'opacity-100': isShow,
+                }, classNameRoot)}
+                onMouseDown={onMouseDown}
+                onMouseUp={onMouseUp}
             >
                 <div
                     onClick={onOverlay}

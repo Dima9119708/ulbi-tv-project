@@ -9,5 +9,7 @@
   "about_site": "About",
   "login": "Login",
   "password": "Password",
-  "name": "Name"
+  "name": "Name",
+  "User not found": "User not found",
+  "auth": "Authorization"
 }

@@ -18,8 +18,10 @@ const config: StorybookConfig = {
     autodocs: "tag",
   },
   webpackFinal: async (config) => {
-    config.resolve.modules.push(path.resolve(__dirname, '../src'));
     config.resolve.extensions.push('.tsx', '.ts');
+    config.resolve.preferAbsolute = true;
+    config.resolve.mainFiles = ['index'];
+    config.resolve.modules.push(path.resolve(__dirname, '../src'));
 
     config.module.rules.push({
       test: /\.css$/,

@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EnumVariantTheme } from 'app/theme';
 import Button, { EnumSizeButton, EnumVariantButton } from './Button';
-import Theme from '../../../../../.storybook/decorators/Themes';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -111,19 +109,3 @@ export const SquareXL: Story = {
         square: EnumSizeButton.XL,
     },
 };
-
-BaseLight.decorators = [
-    Theme(EnumVariantTheme.LIGHT),
-];
-BaseDARK.decorators = [
-    Theme(EnumVariantTheme.DARK),
-];
-OutlineLight.decorators = [
-    Theme(EnumVariantTheme.LIGHT),
-];
-OutlineDark.decorators = [
-    Theme(EnumVariantTheme.DARK),
-];
-BackgroundInvertedLight.decorators = [
-    Theme(EnumVariantTheme.LIGHT),
-];

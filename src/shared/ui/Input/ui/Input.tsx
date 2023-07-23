@@ -1,4 +1,6 @@
-import { InputHTMLAttributes, useId } from 'react';
+import {
+    forwardRef, InputHTMLAttributes, Ref, useId,
+} from 'react';
 import { cva } from 'class-variance-authority';
 import { tailwindMerge } from 'shared/lib/tailwindMerge/tailwindMerge';
 
@@ -30,12 +32,15 @@ const input = cva(null, {
     },
 });
 
-const Input = (props: InputProps) => {
+const Input = (props: InputProps, ref: Ref<HTMLInputElement>) => {
     const {
         label,
         className,
         type,
         variant,
+        name,
+        onChange,
+        onBlur,
     } = props;
 
     const id = useId();
@@ -43,9 +48,16 @@ const Input = (props: InputProps) => {
     return (
         <div className={tailwindMerge(input({ intent: variant, className }))}>
             <label htmlFor={id}>{label}</label>
-            <input type={type} id={id} />
+            <input
+                id={id}
+                ref={ref}
+                name={name}
+                type={type}
+                onBlur={onBlur}
+                onChange={onChange}
+            />
         </div>
     );
 };
 
-export default Input;
+export default forwardRef(Input);

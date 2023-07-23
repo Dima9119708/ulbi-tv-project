@@ -43,7 +43,7 @@ const preview: Preview = {
   decorators: [
     Theme(null),
     Routers,
-    // I18Next
+    I18Next
   ]
 };
 

@@ -13,6 +13,7 @@ module.exports = {
                 'inverted-bg': 'var(--color-inverted-bg)',
                 'inverted-secondary': 'var(--color-inverted-secondary)',
                 'inverted-primary': 'var(--color-inverted-primary)',
+                error: 'var(--error-color)',
             },
         },
         fontFamily: {
