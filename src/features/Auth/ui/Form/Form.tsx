@@ -4,11 +4,11 @@ import { EnumVariantButton } from 'shared/ui/Button/ui/Button';
 import { useTranslation } from 'react-i18next';
 import { Input } from 'shared/ui/Input';
 import { ISubmitFormData } from 'features/Auth/types';
-import { loginActions } from 'features/Auth';
 import { useSingleStore } from 'shared/config/store/store';
 import { login } from 'features/Auth/model/services/login';
 import { Typography } from 'shared/ui/Typography';
 import { EnumVariantColorTypography, EnumVariantTypography } from 'shared/ui/Typography/ui/Typography';
+import { loginActions } from '../../model/services/login';
 
 const Form = () => {
     const { t } = useTranslation();

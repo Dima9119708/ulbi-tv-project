@@ -1,5 +1,7 @@
 import { Modal, ModalPropsBase } from 'shared/ui/Modal';
-import Form from '../Form/Form';
+import { Suspense } from 'react';
+import { Loading } from 'shared/ui/Loading';
+import { FormLazy } from '../Form/FormLazy';
 
 interface ModalAuthProps extends ModalPropsBase {
 }
@@ -9,7 +11,9 @@ const ModalAuth = (props: ModalAuthProps) => {
 
     return (
         <Modal classNameChildren="w-[40rem]" open={open} onClose={onClose}>
-            <Form />
+            <Suspense fallback={<Loading on />}>
+                <FormLazy />
+            </Suspense>
         </Modal>
     );
 };
