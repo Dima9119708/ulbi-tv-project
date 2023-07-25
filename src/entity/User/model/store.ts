@@ -25,4 +25,4 @@ export const userStore = createStore<UserSchema>(((set) => ({
     },
 })));
 
-export const userActions = userStore.getState();
+export const userActions = userStore.actions;

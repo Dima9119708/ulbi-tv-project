@@ -31,6 +31,4 @@ export const login = createStore<LoginSchema>((set) => ({
     },
 }));
 
-export const loginActions = {
-    auth: login.getState().auth,
-};
+export const loginActions = login.actions;

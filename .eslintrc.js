@@ -27,7 +27,7 @@ module.exports = {
         'import/no-unresolved': 'off',
         'no-param-reassign': ['error', {
             props: true,
-            ignorePropertyModificationsFor: ['draft'],
+            ignorePropertyModificationsFor: ['draft', 'acc'],
         }],
         'import/prefer-default-export': 'off',
         'react/react-in-jsx-scope': 'off',
