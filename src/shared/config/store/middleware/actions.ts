@@ -33,20 +33,22 @@ type FooImpl = <T>(f: StateCreator<T, [], []>) => StateCreator<T, [], []>
 const actions: FooImpl = (initializer) => (set, get, api) => {
     type T = ReturnType<typeof initializer>
 
-    const initState: Record<string, any> = initializer(set, get, api);
+    const initState = initializer(set, get, api);
 
     const storeApi = api as Mutate<StoreApi<T>, [['actions', FunctionsFromStore<T>]]>;
 
+    const state: Record<string, any> = initState;
+
     Object.keys(initState).forEach((key) => {
-        if (typeof initState[key] === 'function') {
+        if (typeof state[key] === 'function') {
             storeApi.actions = {
                 ...storeApi.actions,
-                [key]: initState[key],
+                [key]: state[key],
             };
         }
     });
 
-    return initializer(set, get, storeApi);
+    return initState;
 };
 
 const getOnlyFunctionsAndSetInStoreApi = actions as unknown as Foo;

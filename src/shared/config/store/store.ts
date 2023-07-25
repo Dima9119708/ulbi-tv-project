@@ -18,9 +18,11 @@ type TMiddleware <State> = [
 export const createStore = <State extends Record<string, any>>
     (fn: StateCreator<State, TMiddleware<State>>) => create<State, TMiddleware<State>>((
         immer(
-            devtools((
-                getOnlyFunctionsAndSetInStoreApi(fn)
-            )),
+            devtools(
+                (
+                    getOnlyFunctionsAndSetInStoreApi(fn)
+                ),
+            ),
         )
     ));
 
