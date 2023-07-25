@@ -5,6 +5,7 @@ import type { Configuration as DevServerConfiguration } from 'webpack-dev-server
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 
 interface IBuildEnv {
     mode: 'development' | 'production'
@@ -40,6 +41,20 @@ export default (env: IBuildEnv) => {
                 'node_modules',
             ],
             alias: {},
+        },
+        optimization: {
+            minimizer: [
+                new CssMinimizerPlugin({
+                    minimizerOptions: {
+                        preset: [
+                            "default",
+                            {
+                                discardComments: { removeAll: true },
+                            },
+                        ],
+                    },
+                }),
+            ],
         },
         plugins: [
             new webpack.ProgressPlugin(),
