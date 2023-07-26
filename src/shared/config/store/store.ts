@@ -1,11 +1,9 @@
-import { create, StateCreator, UseBoundStore } from 'zustand';
+import { create, StateCreator, useStore } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { devtools } from 'zustand/middleware';
 import { shallow } from 'zustand/shallow';
 import {
-    Mutate,
     StoreApi,
-    StoreMutatorIdentifier,
 } from 'zustand/vanilla';
 import { getOnlyFunctionsAndSetInStoreApi, FunctionsFromStore } from 'shared/config/store/middleware/actions';
 
@@ -26,8 +24,8 @@ export const createStore = <State extends Record<string, any>>
         )
     ));
 
-export const useSingleStore = <State, Result, Mos extends [StoreMutatorIdentifier, unknown][] = []> (
-    fn: UseBoundStore<Mutate<StoreApi<State>, Mos>>,
+export const useSingleStore = <State, Result> (
+    api: StoreApi<State>,
     selector?: (s: State) => Result,
     equal: (a: Result, b: Result) => boolean = shallow,
-) => fn(selector, equal);
+) => useStore(api, selector, equal);
