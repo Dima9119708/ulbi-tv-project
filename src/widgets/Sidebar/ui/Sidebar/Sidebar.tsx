@@ -4,11 +4,8 @@ import { ThemeSwitcher } from 'features/ThemeSwitcher';
 import { LanguageSwitcher } from 'features/LanguageSwitcher';
 import { Button } from 'shared/ui/Button';
 import { EnumSizeButton, EnumVariantButton } from 'shared/ui/Button/ui/Button';
-import { Link } from 'shared/ui/Link';
-import { EnumVariantLink } from 'shared/ui/Link/ui/Link';
-import { useTranslation } from 'react-i18next';
-import IconMain from 'shared/assets/icons/home-alt-svgrepo-com.svg';
-import IconAbout from 'shared/assets/icons/syllabus-svgrepo-com.svg';
+import { configItems } from 'widgets/Sidebar/lib/config';
+import SidebarItem from 'widgets/Sidebar/ui/SidebarItem/SidebarItem';
 
 interface SidebarProps {
     className?: string,
@@ -18,8 +15,6 @@ const Sidebar = (props: SidebarProps) => {
     const {
         className,
     } = props;
-
-    const { t } = useTranslation();
 
     const [collapse, setCollapse] = useState(true);
 
@@ -39,43 +34,11 @@ const Sidebar = (props: SidebarProps) => {
             )}
         >
             <div className={cn('flex flex-col gap-[0.8rem_0] ml-[1.6rem]')}>
-                <Link
-                    to="/"
-                    variant={EnumVariantLink.SECONDARY}
-                    className={cn('flex flex-row items-center gap-[0_0.4rem]')}
-                >
-                    <IconMain
-                        height="1.8rem"
-                        width="1.8rem"
-                        fill="transparent"
-                        stroke="var(--color-inverted-primary)"
-                    />
-                    <span className={cn('transition-[opacity_0.3s_ease] flex-1', {
-                        'w-0 opacity-0': collapse === false,
-                        'w-[100%] opacity-100': collapse === true,
-                    })}
-                    >
-                        <span className="w-auto border-b-[0.1rem] border-solid">{t('main')}</span>
-                    </span>
-                </Link>
-                <Link
-                    to="/about"
-                    variant={EnumVariantLink.SECONDARY}
-                    className="flex flex-row items-center gap-[0_0.4rem]"
-                >
-                    <IconAbout
-                        height="1.5rem"
-                        width="1.8rem"
-                        fill="var(--color-inverted-primary)"
-                    />
-                    <span className={cn('transition-[opacity_0.3s_ease] flex-1 ', {
-                        'w-0 opacity-0': collapse === false,
-                        'w-auto opacity-100': collapse === true,
-                    })}
-                    >
-                        <span className="w-auto border-b-[0.1rem] border-solid">{t('about_site')}</span>
-                    </span>
-                </Link>
+                {
+                    configItems.map((item) => (
+                        <SidebarItem key={item.to} collapse={collapse} {...item} />
+                    ))
+                }
             </div>
 
             <Button

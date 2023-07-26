@@ -1,4 +1,4 @@
-import { createElement } from 'react';
+import { createElement, memo } from 'react';
 import { cva } from 'class-variance-authority';
 import { tailwindMerge } from 'shared/lib/tailwindMerge/tailwindMerge';
 
@@ -65,4 +65,4 @@ const Typography = (props: TypographyProps) => {
     );
 };
 
-export default Typography;
+export default memo(Typography);

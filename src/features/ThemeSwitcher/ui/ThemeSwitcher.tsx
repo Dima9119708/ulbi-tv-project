@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { EnumVariantTheme, useTheme } from 'app/theme';
 import { cn } from 'shared/lib/classNames/classNames';
 import IconNight from 'shared/assets/icons/night-svgrepo-com.svg';
@@ -35,4 +35,4 @@ const ThemeSwitcher = (props: ThemeSwitcherProps) => {
     );
 };
 
-export default ThemeSwitcher;
+export default memo(ThemeSwitcher);

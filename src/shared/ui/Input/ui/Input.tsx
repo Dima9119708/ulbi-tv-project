@@ -1,5 +1,5 @@
 import {
-    forwardRef, InputHTMLAttributes, Ref, useId,
+    forwardRef, InputHTMLAttributes, memo, Ref, useId,
 } from 'react';
 import { cva } from 'class-variance-authority';
 import { tailwindMerge } from 'shared/lib/tailwindMerge/tailwindMerge';
@@ -60,4 +60,4 @@ const Input = (props: InputProps, ref: Ref<HTMLInputElement>) => {
     );
 };
 
-export default forwardRef(Input);
+export default memo(forwardRef(Input));

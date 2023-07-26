@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, memo } from 'react';
 import { tailwindMerge } from 'shared/lib/tailwindMerge/tailwindMerge';
 
 export enum EnumVariantButton {
@@ -91,4 +91,4 @@ const Button = (props: ButtonProps) => {
     );
 };
 
-export default Button;
+export default memo(Button);
