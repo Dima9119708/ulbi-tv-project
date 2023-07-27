@@ -2,9 +2,7 @@ import { Suspense } from 'react';
 import Router from 'app/providers/router';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
-import { navigate, useIntegrateRouterWithStore } from 'shared/config/store/hooks/useIntegrateRouterWithStore';
-
-navigate.go(-1);
+import { useIntegrateRouterWithStore } from 'shared/config/store/hooks/useIntegrateRouterWithStore';
 
 const App = () => {
     useIntegrateRouterWithStore();
