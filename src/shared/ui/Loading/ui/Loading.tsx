@@ -15,8 +15,8 @@ const Loading = (props: LoadingProps) => {
                 css.loading,
                 'transition-[opacity_0.3s_ease] [&_div]:bg-color-inverted-bg',
                 {
-                    'opacity-0': on === false,
-                    'opacity-100': on === true,
+                    'opacity-0': !on,
+                    'opacity-100': on,
                 },
             )}
             >

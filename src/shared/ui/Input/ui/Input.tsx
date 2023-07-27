@@ -24,6 +24,7 @@ const input = cva(null, {
                 '[&_input]:focus:border-none',
                 '[&_input]:bg-color-inverted-bg',
                 '[&_input]:text-color-inverted-primary',
+                '[&_input]:placeholder:text-color-inverted-primary',
             ],
         },
     },
@@ -41,6 +42,7 @@ const Input = (props: InputProps, ref: Ref<HTMLInputElement>) => {
         name,
         onChange,
         onBlur,
+        placeholder,
     } = props;
 
     const id = useId();
@@ -49,6 +51,7 @@ const Input = (props: InputProps, ref: Ref<HTMLInputElement>) => {
         <div className={tailwindMerge(input({ intent: variant, className }))}>
             <label htmlFor={id}>{label}</label>
             <input
+                placeholder={placeholder}
                 id={id}
                 ref={ref}
                 name={name}

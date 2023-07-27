@@ -1,14 +1,10 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { ProfileCard } from 'entity/User';
 
-const Profile = () => {
-    const { t } = useTranslation();
-
-    return (
-        <div className="w-full">
-            { t('profile') }
-        </div>
-    );
-};
+const Profile = () => (
+    <div className="w-full">
+        <ProfileCard />
+    </div>
+);
 
 export default Profile;

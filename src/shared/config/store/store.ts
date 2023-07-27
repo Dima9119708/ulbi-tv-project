@@ -26,6 +26,6 @@ export const createStore = <State extends Record<string, any>>
 
 export const useSingleStore = <State, Result> (
     api: StoreApi<State>,
-    selector?: (s: State) => Result,
+    selector: (s: State) => Result,
     equal: (a: Result, b: Result) => boolean = shallow,
 ) => useStore(api, selector, equal);

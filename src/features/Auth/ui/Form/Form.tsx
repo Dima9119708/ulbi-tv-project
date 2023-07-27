@@ -12,7 +12,7 @@ import { loginActions } from '../../model/services/login';
 
 const Form = () => {
     const { t } = useTranslation();
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm<ISubmitFormData>();
 
     const {
         error,

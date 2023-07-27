@@ -34,6 +34,8 @@ module.exports = {
         'react/react-in-jsx-scope': 'off',
         'react/require-default-props': 'off',
         'no-shadow': 'off',
+        'no-redeclare': 'off',
+        '@typescript-eslint/no-redeclare': 'error',
         'react/jsx-props-no-spreading': 'warn',
         '@typescript-eslint/no-shadow': 'error',
         '@typescript-eslint/no-unused-vars': ['error'],
