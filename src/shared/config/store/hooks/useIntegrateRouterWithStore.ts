@@ -1,21 +1,32 @@
 import { useEffect } from 'react';
-import { useNavigate, To } from 'react-router-dom';
+import { useNavigate, To, NavigateOptions } from 'react-router-dom';
 import { EnumRoutesName, RoutesPath } from 'shared/config/routes/routes';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
+import { NavigateFunction } from 'react-router/dist/lib/hooks';
 
 export interface INavigate {
-    to: To | -1,
+    to: To,
+    delta: number,
+    options?: NavigateOptions
     paths: Record<EnumRoutesName, string>
-    go: (url: To | -1) => void
+    go: NavigateFunction
 }
 
 const navigateStore = create<INavigate, [['zustand/immer', never]]>(immer(((set) => ({
     to: null,
+    delta: null,
+    options: null,
     paths: RoutesPath,
-    go: (url) => {
+    go: (to: To | number, options?: NavigateOptions) => {
         set((draft) => {
-            draft.to = url;
+            if (typeof to === 'number') {
+                draft.delta = to;
+                return;
+            }
+
+            draft.to = to;
+            draft.options = options;
         });
     },
 }))));
@@ -29,11 +40,11 @@ const useIntegrateRouterWithStore = () => {
     const nav = useNavigate();
 
     useEffect(() => {
-        const unSubscribe = navigate.subscribe(({ to } : INavigate) => {
-            if (to === -1) {
+        const unSubscribe = navigate.subscribe(({ to, delta, options } : INavigate) => {
+            if (delta) {
                 nav(to);
             } else {
-                nav(to);
+                nav(to, options);
             }
         });
 
