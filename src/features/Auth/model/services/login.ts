@@ -3,6 +3,7 @@ import axios from 'axios';
 import { LoginSchema, ISubmitFormData } from 'features/Auth/types';
 import { userActions } from 'entity/User';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
+import { api } from 'shared/api/api';
 
 export const login = createStore<LoginSchema>((set) => ({
     isLoading: false,
@@ -13,7 +14,7 @@ export const login = createStore<LoginSchema>((set) => ({
         });
 
         try {
-            const res = await axios.post('http://localhost:8000/login', data);
+            const res = await api.post('/login', data);
 
             if (res.data) {
                 localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(res.data));

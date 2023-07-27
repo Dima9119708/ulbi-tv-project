@@ -16,6 +16,7 @@ module.exports = {
     plugins: ['@typescript-eslint', 'react', 'i18next', 'react-hooks'],
     globals: {
         __IS_DEV__: true,
+        __API__: true,
     },
     rules: {
         indent: [2, 4],

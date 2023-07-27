@@ -10,12 +10,14 @@ import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 interface IBuildEnv {
     mode: 'development' | 'production'
     port: number,
+    apiURL: string,
 }
 
 export default (env: IBuildEnv) => {
     const port = env.port || 3000;
     const mode = env?.mode || 'development';
     const isDev = mode === 'development';
+    const apiUrl = env?.apiURL || 'http://localhost:8000';
 
     const devServer: DevServerConfiguration = {
         open: true,
@@ -65,6 +67,7 @@ export default (env: IBuildEnv) => {
             }),
             new webpack.DefinePlugin({
                 __IS_DEV__: JSON.stringify(isDev),
+                __API__: JSON.stringify(apiUrl),
             }),
             isDev && new webpack.HotModuleReplacementPlugin(),
             isDev && new ReactRefreshWebpackPlugin(),
