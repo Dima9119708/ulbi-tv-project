@@ -3,8 +3,6 @@ import {
     Mutate,
     StoreApi, StoreMutatorIdentifier,
 } from 'zustand/vanilla';
-import { Simulate } from 'react-dom/test-utils';
-import keyDown = Simulate.keyDown;
 
 type Write<T extends object, U extends object> = Omit<T, keyof U> & U
 
@@ -16,7 +14,7 @@ type FunctionPropertyNames<T> = {
 
 type FunctionsFromStore<T> = Pick<T, FunctionPropertyNames<T>>;
 
-type Foo = <
+type TImpl = <
     T extends unknown,
     Mps extends [StoreMutatorIdentifier, unknown][] = [],
     Mcs extends [StoreMutatorIdentifier, unknown][] = []
@@ -30,9 +28,9 @@ declare module 'zustand' {
     }
 }
 
-type FooImpl = <T>(f: StateCreator<T, [], []>) => StateCreator<T, [], []>
+type ImplFn = <T>(f: StateCreator<T, [], []>) => StateCreator<T, [], []>
 
-const actions: FooImpl = (initializer) => (set, get, api) => {
+const actions: ImplFn = (initializer) => (set, get, api) => {
     type T = ReturnType<typeof initializer>
 
     const initState = initializer(set, get, api);
@@ -55,7 +53,7 @@ const actions: FooImpl = (initializer) => (set, get, api) => {
     return initState;
 };
 
-const getOnlyFunctionsAndSetInStoreApi = actions as unknown as Foo;
+const getOnlyFunctionsAndSetInStoreApi = actions as unknown as TImpl;
 
 export {
     FunctionsFromStore,
