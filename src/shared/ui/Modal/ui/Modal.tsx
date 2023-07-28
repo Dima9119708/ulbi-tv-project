@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { cn } from 'shared/lib/classNames/classNames';
 import { Portal } from 'shared/ui/Portal';
 import { useClose } from 'shared/ui/Modal/lib/hooks/useClose';
