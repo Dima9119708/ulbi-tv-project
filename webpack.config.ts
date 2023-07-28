@@ -6,6 +6,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import TerserPlugin from "terser-webpack-plugin";
 
 interface IBuildEnv {
     mode: 'development' | 'production'
@@ -45,7 +46,9 @@ export default (env: IBuildEnv) => {
             alias: {},
         },
         optimization: {
+            minimize: true,
             minimizer: [
+                new TerserPlugin(),
                 new CssMinimizerPlugin({
                     minimizerOptions: {
                         preset: [
