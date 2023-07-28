@@ -34,7 +34,7 @@ const typography = cva(null, {
                 'text-color-primary',
             ],
             [EnumVariantColorTypography.ERROR]: [
-                'text-color-error',
+                'text-color-red',
             ],
         },
     },

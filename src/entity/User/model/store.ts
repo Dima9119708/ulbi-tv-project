@@ -1,6 +1,7 @@
 import { createStore } from 'shared/config/store/store';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { api } from 'shared/api/api';
+import { actionLoading } from 'shared/hooks/useLoading';
 import {
     ProfileSchema, User, UserSchema,
 } from '../types';
@@ -8,6 +9,31 @@ import {
 export const userStore = createStore<UserSchema & ProfileSchema>(((set) => ({
     authData: null,
     profile: null,
+    profileReadonly: true,
+    setReadonly: (flag) => {
+        set((draft) => {
+            draft.profileReadonly = flag;
+        });
+    },
+    updateProfile: async (data) => {
+        actionLoading.set(true);
+
+        try {
+            const res = await api.put('/profile', data);
+
+            if (res.data) {
+                set((draft) => {
+                    draft.profile = res.data;
+                });
+            }
+
+            return res.data;
+        } catch (e) {
+            return {};
+        } finally {
+            actionLoading.set(false);
+        }
+    },
     getProfile: async () => {
         try {
             const res = await api.get('/profile');
@@ -21,6 +47,8 @@ export const userStore = createStore<UserSchema & ProfileSchema>(((set) => ({
             return res.data;
         } catch (e) {
             return {};
+        } finally {
+            actionLoading.set(false);
         }
     },
     setAuthData: (authData: User) => {

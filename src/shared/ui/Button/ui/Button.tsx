@@ -6,6 +6,7 @@ export enum EnumVariantButton {
     BASE = 'base',
     BASE_INVERTED = 'base_inverted',
     OUTLINE = 'outline',
+    OUTLINE_RED = 'outline red',
     BACKGROUND = 'background',
     BACKGROUND_INVERTED = 'background_inverted',
 }
@@ -46,6 +47,13 @@ const button = cva(null, {
             [EnumVariantButton.BACKGROUND_INVERTED]: [
                 'bg-color-inverted-bg',
                 'text-color-inverted-primary',
+            ],
+            [EnumVariantButton.OUTLINE_RED]: [
+                'text-color-red',
+                'p-[0.4rem_1.5rem]',
+                'rounded-[0.4rem]',
+                'border-color-red',
+                'border-[0.1rem]',
             ],
         },
         square: {

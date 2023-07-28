@@ -3,14 +3,14 @@ export interface User {
 }
 
 export interface Profile {
-    first: string,
-    lastname: string,
-    age: never,
-    currency: string,
-    country: string,
-    city: string,
-    username: string,
-    avatar: string
+    first?: string,
+    lastname?: string,
+    age?: number,
+    currency?: string,
+    country?: string,
+    cit?: string,
+    username?: string,
+    avatar?: string
 }
 
 export interface UserSchema {
@@ -22,5 +22,8 @@ export interface UserSchema {
 
 export interface ProfileSchema {
     profile?: Profile | null,
+    profileReadonly: boolean,
     getProfile: () => Promise<Profile>
+    updateProfile: (data: Profile) => Promise<Profile>
+    setReadonly: (flag: boolean) => void
 }

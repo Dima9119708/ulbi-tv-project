@@ -5,7 +5,7 @@ type TReturnLoading<T extends Record<string, boolean>> = { [K in keyof T]: boole
 
 interface TStore {
     groupsLoading: Record<string, boolean>,
-    set: (flag: boolean, field?: string) => void
+    set: (flag: boolean, field?: keyof TStore['groupsLoading']) => void
     clear: () => void
 }
 

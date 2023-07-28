@@ -27,6 +27,12 @@ const input = cva(null, {
                 '[&_input]:placeholder:text-color-inverted-primary',
             ],
         },
+        readOnly: {
+            base: [
+                'opacity-50',
+                'pointer-events-none',
+            ],
+        },
     },
     defaultVariants: {
         intent: EnumInputVariant.BASE,
@@ -43,14 +49,21 @@ const Input = (props: InputProps, ref: Ref<HTMLInputElement>) => {
         onChange,
         onBlur,
         placeholder,
+        readOnly,
     } = props;
 
     const id = useId();
 
     return (
-        <div className={tailwindMerge(input({ intent: variant, className }))}>
+        <div className={tailwindMerge(input({
+            intent: variant,
+            readOnly: readOnly ? 'base' : null,
+            className,
+        }))}
+        >
             <label htmlFor={id}>{label}</label>
             <input
+                readOnly={readOnly}
                 placeholder={placeholder}
                 id={id}
                 ref={ref}
