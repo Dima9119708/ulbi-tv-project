@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 
 export const useClose = () => {
-    const closeModal = useRef<{ target: EventTarget, isNeededClose: boolean }>({
+    const closeModal = useRef<{ target: EventTarget | null, isNeededClose: boolean }>({
         target: null,
         isNeededClose: false,
     });

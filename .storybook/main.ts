@@ -1,5 +1,4 @@
 import type { StorybookConfig } from "@storybook/react-webpack5";
-import webpack, { RuleSetRule } from 'webpack'
 import path from "path";
 
 const config: StorybookConfig = {
@@ -18,12 +17,10 @@ const config: StorybookConfig = {
     autodocs: "tag",
   },
   webpackFinal: async (config) => {
-    config.resolve.extensions.push('.tsx', '.ts');
-    config.resolve.preferAbsolute = true;
-    config.resolve.mainFiles = ['index'];
-    config.resolve.modules.push(path.resolve(__dirname, '../src'));
+    config.resolve?.extensions?.push('.tsx', '.ts');
+    config.resolve?.modules?.push(path.resolve(__dirname, '../src'));
 
-    config.module.rules.push({
+    config.module?.rules?.push({
       test: /\.css$/,
       use: [
         {
@@ -40,14 +37,18 @@ const config: StorybookConfig = {
       ],
     })
 
-    const fileLoaderRule = config.module.rules
-        .find((rule: RuleSetRule) =>
-            rule.test && rule.test instanceof RegExp && rule.test.test('.svg'));
+    const fileLoaderRule = config.module?.rules?.find((rule) =>
+      rule instanceof Object
+      && rule.test
+      && rule.test instanceof RegExp
+      && rule?.test?.test('.svg')
+    );
 
-    // @ts-ignore
-    fileLoaderRule.exclude = /\.svg$/;
+    if (fileLoaderRule instanceof Object) {
+      fileLoaderRule.exclude = /\.svg$/;
+    }
 
-    config.module.rules.push({
+    config.module?.rules?.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
       resourceQuery: { not: [/url/] },

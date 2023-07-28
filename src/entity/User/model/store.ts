@@ -29,7 +29,7 @@ export const userStore = createStore<UserSchema & ProfileSchema>(((set) => ({
         });
     },
     initAuth: () => {
-        const authData = JSON.parse(localStorage.getItem(USER_LOCALSTORAGE_KEY));
+        const authData = JSON.parse(localStorage.getItem(USER_LOCALSTORAGE_KEY) || '');
 
         if (authData) {
             set((draft) => {

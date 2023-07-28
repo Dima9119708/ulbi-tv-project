@@ -7,16 +7,16 @@ import { NavigateFunction } from 'react-router/dist/lib/hooks';
 
 export interface INavigate {
     to: To,
-    delta: number,
+    delta: number | null,
     options?: NavigateOptions
     paths: Record<EnumRoutesName, string>
     go: NavigateFunction
 }
 
 const navigateStore = create<INavigate, [['zustand/immer', never]]>(immer(((set) => ({
-    to: null,
+    to: '',
     delta: null,
-    options: null,
+    options: undefined,
     paths: RoutesPath,
     go: (to: To | number, options?: NavigateOptions) => {
         set((draft) => {
@@ -41,8 +41,8 @@ const useIntegrateRouterWithStore = () => {
 
     useEffect(() => {
         const unSubscribe = navigate.subscribe(({ to, delta, options } : INavigate) => {
-            if (delta) {
-                nav(to);
+            if (typeof delta === 'number') {
+                nav(delta);
             } else {
                 nav(to, options);
             }

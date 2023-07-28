@@ -1,10 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
+import {
+    MutableRefObject, useEffect, useRef, useState,
+} from 'react';
+
+type AnimationTypes = {
+    requestAnimationFrameInner: ReturnType<typeof requestAnimationFrame> | null,
+    timeout: ReturnType<typeof setTimeout> | null,
+    requestAnimationFrameWrapper: ReturnType<typeof requestAnimationFrame> | null
+};
 
 export const useAnimation = (open: boolean) => {
-    const animation = useRef({
+    const animation: MutableRefObject<AnimationTypes> = useRef({
+        requestAnimationFrameInner: null,
         timeout: null,
         requestAnimationFrameWrapper: null,
-        requestAnimationFrameInner: null,
     });
 
     const [isMount, setMount] = useState(false);
@@ -33,9 +41,15 @@ export const useAnimation = (open: boolean) => {
     }, [open]);
 
     useEffect(() => function clearUp() {
-        clearTimeout(animation.current.timeout);
-        cancelAnimationFrame(animation.current.requestAnimationFrameWrapper);
-        cancelAnimationFrame(animation.current.requestAnimationFrameInner);
+        if (typeof animation.current.timeout === 'number') {
+            clearTimeout(animation.current.timeout);
+        }
+        if (typeof animation.current.requestAnimationFrameWrapper === 'number') {
+            cancelAnimationFrame(animation.current.requestAnimationFrameWrapper);
+        }
+        if (typeof animation.current.requestAnimationFrameInner === 'number') {
+            cancelAnimationFrame(animation.current.requestAnimationFrameInner);
+        }
     }, []);
 
     return {

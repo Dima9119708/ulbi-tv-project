@@ -1,9 +1,16 @@
 import { createStore } from 'shared/config/store/store';
-import axios from 'axios';
 import { LoginSchema, ISubmitFormData } from 'features/Auth/types';
 import { userActions } from 'entity/User';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { api } from 'shared/api/api';
+
+interface ServerError {
+    response: {
+        data: {
+            message: string;
+        };
+    };
+}
 
 export const login = createStore<LoginSchema>((set) => ({
     isLoading: false,
@@ -22,7 +29,7 @@ export const login = createStore<LoginSchema>((set) => ({
             }
         } catch (e) {
             set((draft) => {
-                draft.error = e.response.data.message;
+                draft.error = (e as ServerError).response.data.message;
             });
         } finally {
             set((draft) => {

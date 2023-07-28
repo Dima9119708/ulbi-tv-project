@@ -32,6 +32,7 @@ const ProfileCard = () => {
             </div>
             <Input {...register('first')} placeholder={t('first_name')} className="mb-[0.5rem]" />
             <Input {...register('lastname')} placeholder={t('last_name')} />
+            <Typography text={t(error)} variant={EnumVariantTypography.H3} />
             <Loading on={isLoading} />
         </div>
     );

@@ -3,6 +3,8 @@ import {
     Mutate,
     StoreApi, StoreMutatorIdentifier,
 } from 'zustand/vanilla';
+import { Simulate } from 'react-dom/test-utils';
+import keyDown = Simulate.keyDown;
 
 type Write<T extends object, U extends object> = Omit<T, keyof U> & U
 
@@ -37,16 +39,18 @@ const actions: FooImpl = (initializer) => (set, get, api) => {
 
     const storeApi = api as Mutate<StoreApi<T>, [['actions', FunctionsFromStore<T>]]>;
 
-    const state: Record<string, any> = initState;
+    if (initState instanceof Object) {
+        const state: Record<string, any> = initState;
 
-    Object.keys(initState).forEach((key) => {
-        if (typeof state[key] === 'function') {
-            storeApi.actions = {
-                ...storeApi.actions,
-                [key]: state[key],
-            };
-        }
-    });
+        Object.keys(initState).forEach((key) => {
+            if (typeof state[key] === 'function') {
+                storeApi.actions = {
+                    ...storeApi.actions,
+                    [key]: state[key],
+                };
+            }
+        });
+    }
 
     return initState;
 };

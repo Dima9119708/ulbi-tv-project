@@ -17,7 +17,7 @@ export default (themeName: EnumVariantTheme | null) => (Story: StoryFn) => {
         const $firstNode = stories.shift()
 
         if ($firstNode) {
-            const $docsStory: HTMLDivElement = $firstNode.querySelector('.docs-story')
+            const $docsStory = $firstNode.querySelector('.docs-story') as HTMLDivElement
 
             document.body.setAttribute('data-theme', theme)
             $docsStory.style.backgroundColor = 'var(--color-bg)'
@@ -25,7 +25,7 @@ export default (themeName: EnumVariantTheme | null) => (Story: StoryFn) => {
 
         stories.forEach($story => {
             const themeNameInNameComponent = $story.id.split('-').at(-1)
-            const $docsStory: HTMLDivElement = $story.querySelector('.docs-story')
+            const $docsStory = $story.querySelector('.docs-story') as HTMLDivElement
 
             let themeAmongEnum = null
 

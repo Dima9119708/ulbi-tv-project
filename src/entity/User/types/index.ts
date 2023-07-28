@@ -14,13 +14,13 @@ export interface Profile {
 }
 
 export interface UserSchema {
-    authData?: User,
+    authData?: User | null,
     setAuthData: (authData: User) => void
     initAuth: () => void,
     logout: () => void
 }
 
 export interface ProfileSchema {
-    profile?: Profile,
+    profile?: Profile | null,
     getProfile: () => Promise<Profile>
 }

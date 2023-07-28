@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
 export interface ModalPropsBase {
-    open?: boolean
-    onClose?: () => void,
+    open: boolean
+    onClose: () => void,
     children?: ReactNode,
 }
 

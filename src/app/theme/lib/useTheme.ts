@@ -34,7 +34,7 @@ export const useTheme = (props: IThemeProps = {}) => {
 
     useLayoutEffect(() => {
         init();
-    }, []);
+    }, [init]);
 
     return {
         onChangeTheme,
