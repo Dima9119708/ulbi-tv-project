@@ -18,10 +18,10 @@ const config: StorybookConfig = {
     autodocs: "tag",
   },
   webpackFinal: async (config) => {
-    config.resolve?.extensions?.push('.tsx', '.ts');
-    config.resolve?.modules?.push(path.resolve(__dirname, '../src'));
+    config.resolve!.extensions?.push('.tsx', '.ts');
+    config.resolve!.modules?.push(path.resolve(__dirname, '../src'));
 
-    config.module?.rules?.push({
+    config.module!.rules!.push({
       test: /\.css$/,
       use: [
         {
@@ -37,14 +37,14 @@ const config: StorybookConfig = {
         },
       ],
     })
-    config?.plugins?.push(
+    config!.plugins!.push(
         new webpack.DefinePlugin({
           __IS_DEV__: true,
           __API__: JSON.stringify('http://localhost:8000'),
         }),
      )
 
-    const fileLoaderRule = config.module?.rules?.find((rule) =>
+    const fileLoaderRule = config.module!.rules?.find((rule) =>
       rule instanceof Object
       && rule.test
       && rule.test instanceof RegExp
@@ -55,7 +55,7 @@ const config: StorybookConfig = {
       fileLoaderRule.exclude = /\.svg$/;
     }
 
-    config.module?.rules?.push({
+    config.module!.rules!.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
       resourceQuery: { not: [/url/] },
