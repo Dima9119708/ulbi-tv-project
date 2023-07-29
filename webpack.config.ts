@@ -7,6 +7,8 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
+import {WebpackManifestPlugin} from "webpack-manifest-plugin";
 
 interface IBuildEnv {
     mode: 'development' | 'production'
@@ -34,6 +36,7 @@ export default (env: IBuildEnv) => {
             filename: '[name].[contenthash].js',
             path: path.resolve(__dirname, 'build'),
             clean: true,
+            publicPath: ""
         },
         resolve: {
             extensions: ['.tsx', '.ts', '.js'],
@@ -71,6 +74,18 @@ export default (env: IBuildEnv) => {
             new webpack.DefinePlugin({
                 __IS_DEV__: JSON.stringify(isDev),
                 __API__: JSON.stringify(apiUrl),
+            }),
+            new CopyPlugin({
+                patterns: isDev
+                    ? [
+                        { from: 'src/app/styles/themes', to: "public" },
+                    ]
+                    : [
+                        { from: 'src/app/styles/themes', to: "css/[name].[contenthash].css" },
+                    ],
+            }),
+            new WebpackManifestPlugin({
+                useHash: false
             }),
             isDev && new webpack.HotModuleReplacementPlugin(),
             isDev && new ReactRefreshWebpackPlugin(),

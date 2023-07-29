@@ -5,6 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 
 import 'shared/config/i18n/i18n';
+import { themeStore } from 'app/theme/lib/useTheme';
+
+themeStore.actions.init();
 
 const container = document.getElementById('root');
 

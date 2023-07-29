@@ -1,15 +1,12 @@
-import { useLayoutEffect } from 'react';
 import { createStore, useSingleStore } from 'shared/config/store/store';
 import { EnumVariantTheme, ITheme, IThemeProps } from '../types';
 
-const themeStore = createStore<ITheme>((set, get) => ({
+export const themeStore = createStore<ITheme>((set, get) => ({
     nameTheme: EnumVariantTheme.LIGHT,
     init: () => {
-        const savedThemeName = localStorage.getItem('themeName');
+        const savedThemeName = localStorage.getItem('themeName') || EnumVariantTheme.LIGHT;
 
-        get().onChange(
-            (savedThemeName as EnumVariantTheme) || EnumVariantTheme.LIGHT,
-        );
+        get().onChange(savedThemeName as EnumVariantTheme);
     },
     onChange: (name: EnumVariantTheme) => {
         localStorage.setItem('themeName', name);
@@ -18,6 +15,39 @@ const themeStore = createStore<ITheme>((set, get) => ({
         set((draft) => {
             draft.nameTheme = name;
         });
+
+        if (__IS_DEV__) {
+            const $link: HTMLLinkElement | null = document.head.querySelector('#custom-themes');
+
+            if ($link !== null) {
+                $link.href = `/public/${name}.css`;
+            } else {
+                const nodeLink = document.createElement('link');
+                nodeLink.rel = 'stylesheet';
+                nodeLink.id = 'custom-themes';
+                nodeLink.href = `/public/${name}.css`;
+
+                document.head.append(nodeLink);
+            }
+        } else {
+            (async () => {
+                const res = await fetch('/manifest.json');
+                const manifest = await res.json();
+
+                const $link: HTMLLinkElement | null = document.head.querySelector('#custom-themes');
+
+                if ($link !== null) {
+                    $link.href = manifest[`css/${name}.css`];
+                } else {
+                    const nodeLink = document.createElement('link');
+                    nodeLink.rel = 'stylesheet';
+                    nodeLink.id = 'custom-themes';
+                    nodeLink.href = manifest[`css/${name}.css`];
+
+                    document.head.append(nodeLink);
+                }
+            })();
+        }
     },
 }));
 
@@ -26,15 +56,10 @@ export const useTheme = (props: IThemeProps = {}) => {
         getNameThemeAfterChangeTheme = false,
     } = props;
 
-    const { onChangeTheme, init, nameTheme } = useSingleStore(themeStore, (state) => ({
-        init: state.init,
+    const { onChangeTheme, nameTheme } = useSingleStore(themeStore, (state) => ({
         onChangeTheme: state.onChange,
         nameTheme: getNameThemeAfterChangeTheme && state.nameTheme,
     }));
-
-    useLayoutEffect(() => {
-        init();
-    }, [init]);
 
     return {
         onChangeTheme,
