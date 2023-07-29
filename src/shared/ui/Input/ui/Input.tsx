@@ -28,7 +28,7 @@ const input = cva(null, {
             ],
         },
         readOnly: {
-            base: [
+            true: [
                 'opacity-50',
                 'pointer-events-none',
             ],
@@ -57,7 +57,7 @@ const Input = (props: InputProps, ref: Ref<HTMLInputElement>) => {
     return (
         <div className={tailwindMerge(input({
             intent: variant,
-            readOnly: readOnly ? 'base' : null,
+            readOnly,
             className,
         }))}
         >

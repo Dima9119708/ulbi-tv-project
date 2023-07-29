@@ -5,12 +5,14 @@ import { shallow } from 'zustand/shallow';
 import {
     StoreApi,
 } from 'zustand/vanilla';
-import { getOnlyFunctionsAndSetInStoreApi, FunctionsFromStore } from 'shared/config/store/middleware/actions';
+import { actionsMiddleware, FunctionsFromStore } from 'shared/config/store/middleware/actions';
+import { selectorMiddleware, TSelector } from 'shared/config/store/middleware/selector';
 
 type TMiddleware <State> = [
     ['zustand/immer', never],
     ['zustand/devtools', never],
     ['actions', FunctionsFromStore<State>],
+    ['selector', TSelector<State>],
 ]
 
 export const createStore = <State extends Record<string, any>>
@@ -18,7 +20,11 @@ export const createStore = <State extends Record<string, any>>
         immer(
             devtools(
                 (
-                    getOnlyFunctionsAndSetInStoreApi(fn)
+                    actionsMiddleware(
+                        selectorMiddleware(
+                            fn,
+                        ),
+                    )
                 ),
             ),
         )

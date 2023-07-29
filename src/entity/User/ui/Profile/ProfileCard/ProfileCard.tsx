@@ -6,6 +6,8 @@ import { Input } from 'shared/ui/Input';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { Loading } from 'shared/ui/Loading';
 import { Avatar } from 'shared/ui/Avatar';
+import { Currency } from 'entity/Currency';
+import { Country } from 'entity/Country';
 
 interface ProfileCardProps {
     isLoading: boolean,
@@ -58,14 +60,51 @@ const ProfileCard = (props: ProfileCardProps) => {
                     </div>
                 )
             }
-            <Input {...register('first')} readOnly={readonly} placeholder={t('first_name')} className="mb-[0.5rem]" />
-            <Input {...register('lastname')} readOnly={readonly} placeholder={t('last_name')} className="mb-[0.5rem]" />
-            <Input {...register('age')} readOnly={readonly} placeholder={t('age')} className="mb-[0.5rem]" />
-            <Input {...register('currency')} readOnly={readonly} placeholder={t('currency')} className="mb-[0.5rem]" />
-            <Input {...register('country')} readOnly={readonly} placeholder={t('country')} className="mb-[0.5rem]" />
-            <Input {...register('city')} readOnly={readonly} placeholder={t('city')} className="mb-[0.5rem]" />
-            <Input {...register('city')} readOnly={readonly} placeholder={t('city')} className="mb-[0.5rem]" />
-            <Input {...register('avatar')} readOnly={readonly} placeholder={t('avatar')} className="mb-[0.5rem]" />
+            <Input
+                {...register('first')}
+                readOnly={readonly}
+                label={t('first_name')}
+                placeholder={t('first_name')}
+                className="mb-[0.5rem]"
+            />
+            <Input
+                {...register('lastname')}
+                readOnly={readonly}
+                label={t('last_name')}
+                placeholder={t('last_name')}
+                className="mb-[0.5rem]"
+            />
+            <Input
+                {...register('age')}
+                readOnly={readonly}
+                label={t('age')}
+                placeholder={t('age')}
+                className="mb-[0.5rem]"
+            />
+            <Country
+                {...register('country')}
+                readonly={readonly}
+                className="mb-[0.5rem]"
+            />
+            <Input
+                {...register('city')}
+                readOnly={readonly}
+                label={t('city')}
+                placeholder={t('city')}
+                className="mb-[0.5rem]"
+            />
+            <Currency
+                {...register('currency')}
+                readonly={readonly}
+                className="mb-[0.5rem]"
+            />
+            <Input
+                {...register('avatar')}
+                label={t('avatar')}
+                readOnly={readonly}
+                placeholder={t('avatar')}
+                className="mb-[0.5rem]"
+            />
             <Typography text={t(error)} variant={EnumVariantTypography.H3} />
         </div>
     );

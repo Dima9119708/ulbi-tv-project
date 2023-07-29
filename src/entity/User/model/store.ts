@@ -24,6 +24,7 @@ export const userStore = createStore<UserSchema & ProfileSchema>(((set) => ({
             if (res.data) {
                 set((draft) => {
                     draft.profile = res.data;
+                    draft.profileReadonly = true;
                 });
             }
 
@@ -74,3 +75,5 @@ export const userStore = createStore<UserSchema & ProfileSchema>(((set) => ({
 })));
 
 export const userActions = userStore.actions;
+
+export const getIsAuth = userStore.selector((state) => !!state.authData);

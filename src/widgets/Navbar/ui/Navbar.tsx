@@ -6,6 +6,7 @@ import { EnumVariantButton } from 'shared/ui/Button/ui/Button';
 import { ModalAuth } from 'features/Auth';
 import { useSingleStore } from 'shared/config/store/store';
 import { userActions, userStore } from 'entity/User';
+import { getIsAuth } from 'entity/User/model/store';
 
 interface NavbarProps {
     className?: string
@@ -19,11 +20,7 @@ const Navbar = (props: NavbarProps) => {
     const { t } = useTranslation();
     const [isOpenModal, setOpenModal] = useState(false);
 
-    const {
-        isAuth,
-    } = useSingleStore(userStore, (state) => ({
-        isAuth: state.authData !== undefined,
-    }));
+    const isAuth = useSingleStore(userStore, getIsAuth);
 
     useEffect(() => {
         if (isAuth) {

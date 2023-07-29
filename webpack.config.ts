@@ -84,7 +84,7 @@ export default (env: IBuildEnv) => {
                         { from: 'src/app/styles/themes', to: "css/[name].[contenthash].css" },
                     ],
             }),
-            new WebpackManifestPlugin({}),
+            !isDev && new WebpackManifestPlugin({}),
             isDev && new webpack.HotModuleReplacementPlugin(),
             isDev && new ReactRefreshWebpackPlugin(),
             isDev && new BundleAnalyzerPlugin({

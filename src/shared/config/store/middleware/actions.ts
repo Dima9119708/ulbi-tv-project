@@ -3,6 +3,7 @@ import {
     Mutate,
     StoreApi, StoreMutatorIdentifier,
 } from 'zustand/vanilla';
+import { selectorMiddleware } from 'shared/config/store/middleware/selector';
 
 type Write<T extends object, U extends object> = Omit<T, keyof U> & U
 
@@ -53,9 +54,9 @@ const actions: ImplFn = (initializer) => (set, get, api) => {
     return initState;
 };
 
-const getOnlyFunctionsAndSetInStoreApi = actions as unknown as TImpl;
+const actionsMiddleware = actions as unknown as TImpl;
 
 export {
     FunctionsFromStore,
-    getOnlyFunctionsAndSetInStoreApi,
+    actionsMiddleware,
 };
