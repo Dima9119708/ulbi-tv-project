@@ -17,14 +17,12 @@ export const themeStore = createStore<ITheme>((set, get) => ({
         });
 
         if (__IS_DEV__) {
-            const $link: HTMLLinkElement | null = document.head.querySelector('#custom-themes');
+            const $link: HTMLLinkElement | null = document.head.querySelector(`[data-theme="${name}"]`);
 
-            if ($link !== null) {
-                $link.href = `/public/${name}.css`;
-            } else {
+            if ($link === null) {
                 const nodeLink = document.createElement('link');
                 nodeLink.rel = 'stylesheet';
-                nodeLink.id = 'custom-themes';
+                nodeLink.setAttribute('data-theme', name);
                 nodeLink.href = `/public/${name}.css`;
 
                 document.head.append(nodeLink);
@@ -34,14 +32,12 @@ export const themeStore = createStore<ITheme>((set, get) => ({
                 const res = await fetch('/manifest.json');
                 const manifest = await res.json();
 
-                const $link: HTMLLinkElement | null = document.head.querySelector('#custom-themes');
+                const $link: HTMLLinkElement | null = document.head.querySelector(`[data-theme="${name}"]`);
 
-                if ($link !== null) {
-                    $link.href = manifest[`css/${name}.css`];
-                } else {
+                if ($link === null) {
                     const nodeLink = document.createElement('link');
                     nodeLink.rel = 'stylesheet';
-                    nodeLink.id = 'custom-themes';
+                    nodeLink.setAttribute('data-theme', name);
                     nodeLink.href = manifest[`css/${name}.css`];
 
                     document.head.append(nodeLink);
