@@ -1,5 +1,6 @@
 import { StateCreator } from 'zustand';
 import {
+    Mutate, StoreApi,
     StoreMutatorIdentifier,
 } from 'zustand/vanilla';
 
@@ -25,7 +26,15 @@ declare module 'zustand' {
 
 type ImplFn = <T>(f: StateCreator<T, [], []>) => StateCreator<T, [], []>
 
-const actions: ImplFn = (initializer) => (set, get, api) => initializer(set, get, api);
+const actions: ImplFn = (initializer) => (set, get, api) => {
+    type T = ReturnType<typeof initializer>
+
+    const storeApi = api as Mutate<StoreApi<T>, [['selector', TSelector<T>]]>;
+
+    storeApi.selector = (state) => state;
+
+    return initializer(set, get, api);
+};
 
 const selectorMiddleware = actions as unknown as TImpl;
 
