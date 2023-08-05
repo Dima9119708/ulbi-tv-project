@@ -3,6 +3,9 @@ import {
 } from 'react';
 import { cva } from 'class-variance-authority';
 import { tailwindMerge } from 'shared/lib/tailwindMerge/tailwindMerge';
+import { ErrorOption } from 'react-hook-form';
+import { Typography } from 'shared/ui/Typography';
+import { EnumVariantColorTypography, EnumVariantTypography } from 'shared/ui/Typography/ui/Typography';
 
 export enum EnumInputVariant {
     BASE = 'base',
@@ -11,6 +14,7 @@ export enum EnumInputVariant {
 interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
     label?: string,
     variant?: EnumInputVariant
+    error?: ErrorOption
 }
 
 const input = cva(null, {
@@ -50,6 +54,7 @@ const Input = (props: InputProps, ref: Ref<HTMLInputElement>) => {
         onBlur,
         placeholder,
         readOnly,
+        error,
     } = props;
 
     const id = useId();
@@ -72,6 +77,13 @@ const Input = (props: InputProps, ref: Ref<HTMLInputElement>) => {
                 onBlur={onBlur}
                 onChange={onChange}
             />
+            { error && (
+                <Typography
+                    text={error.message ?? ''}
+                    variant={EnumVariantTypography.BODY1}
+                    color={EnumVariantColorTypography.ERROR}
+                />
+            )}
         </div>
     );
 };

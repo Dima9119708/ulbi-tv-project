@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     ProfileCard, ProfileHead, userActions, userStore,
 } from 'entity/User';
@@ -6,10 +5,14 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useSingleStore } from 'shared/config/store/store';
 import { Profile as TProfile } from 'entity/User/types';
 import { useLoading } from 'shared/hooks/useLoading';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { profileSchema } from 'entity/User/model/schemaValidateProfile';
 
 const Profile = () => {
     const methods = useForm<TProfile>({
-        defaultValues: async () => userActions.getProfile(),
+        mode: 'onBlur',
+        defaultValues: userActions.getProfile,
+        resolver: yupResolver(profileSchema),
     });
 
     const isLoading = useLoading(true);

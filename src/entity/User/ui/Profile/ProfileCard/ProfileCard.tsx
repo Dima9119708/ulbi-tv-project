@@ -23,7 +23,7 @@ const ProfileCard = (props: ProfileCardProps) => {
     const { t } = useTranslation();
     const error = useError();
 
-    const { register, control } = useFormContext();
+    const { register, control, formState: { errors } } = useFormContext();
 
     const avatar = useWatch({ name: 'avatar', control });
 
@@ -62,6 +62,7 @@ const ProfileCard = (props: ProfileCardProps) => {
             }
             <Input
                 {...register('first')}
+                error={errors.first}
                 readOnly={readonly}
                 label={t('first_name')}
                 placeholder={t('first_name')}
@@ -69,6 +70,7 @@ const ProfileCard = (props: ProfileCardProps) => {
             />
             <Input
                 {...register('lastname')}
+                error={errors.lastname}
                 readOnly={readonly}
                 label={t('last_name')}
                 placeholder={t('last_name')}
@@ -76,6 +78,7 @@ const ProfileCard = (props: ProfileCardProps) => {
             />
             <Input
                 {...register('age')}
+                error={errors.age}
                 readOnly={readonly}
                 label={t('age')}
                 placeholder={t('age')}

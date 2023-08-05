@@ -16,6 +16,7 @@ export const configItems: SidebarItemBaseProps[] = [
                 stroke="var(--color-inverted-primary)"
             />
         ),
+        isProtected: false,
     },
     {
         to: RoutesPath.about,
@@ -27,6 +28,7 @@ export const configItems: SidebarItemBaseProps[] = [
                 fill="var(--color-inverted-primary)"
             />
         ),
+        isProtected: false,
     },
     {
         to: RoutesPath.profile,
@@ -39,5 +41,6 @@ export const configItems: SidebarItemBaseProps[] = [
                 fill="var(--color-inverted-primary)"
             />
         ),
+        isProtected: true,
     },
 ];

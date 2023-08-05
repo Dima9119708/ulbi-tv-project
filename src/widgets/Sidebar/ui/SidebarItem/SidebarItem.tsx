@@ -3,11 +3,15 @@ import { EnumVariantLink } from 'shared/ui/Link/ui/Link';
 import { cn } from 'shared/lib/classNames/classNames';
 import { memo, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSingleStore } from 'shared/config/store/store';
+import { userStore } from 'entity/User';
+import { getIsAuth } from 'entity/User/model/store';
 
 export interface SidebarItemBaseProps {
     to: string,
     icon: ReactNode,
     name: string,
+    isProtected: boolean,
 }
 
 interface SidebarItemProps extends SidebarItemBaseProps {
@@ -16,10 +20,16 @@ interface SidebarItemProps extends SidebarItemBaseProps {
 
 const SidebarItem = (props: SidebarItemProps) => {
     const {
-        collapse, to, icon, name,
+        collapse, to, icon, name, isProtected,
     } = props;
 
     const { t } = useTranslation();
+
+    const isAuth = useSingleStore(userStore, getIsAuth);
+
+    if (isProtected && !isAuth) {
+        return null;
+    }
 
     return (
         <Link

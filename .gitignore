@@ -2,7 +2,7 @@ build
 .idea
 package-lock.json
 yarn.lock
-
+.history
 # Logs
 logs
 *.log
